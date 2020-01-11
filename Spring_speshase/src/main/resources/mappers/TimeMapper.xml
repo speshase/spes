@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.speshase.mapper.TimeMapper">
+<!-- select에서 id는 호출할 메서드명을 쓴다. resultType은 리턴타입-->
+  <select id="getTime1" resultType="hashmap">
+ <!-- mysql에서 select 문장의 =?에 해당되는게 #{id} -->
+ <!-- select * from Blog where id = #{id} -->
+    select * from member1
+  </select>
+<!--
+  <insert id="ins">
+  insert into board values('aaa', 'bbbb')
+  </insert>
+  
+  <update id="upd">
+  update board set password='5678' where id='aaa'
+  </update>
+  
+  <delete id="ded">
+  delete from board where id='aaa' 
+  </delete> 
+ -->  
+</mapper>
