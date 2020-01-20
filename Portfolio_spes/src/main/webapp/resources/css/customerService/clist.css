@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#middle1{
+	background-color:#efefef;
+	position:relative; z-index:1;
+	text-align:center;
+};
+
+.tt{
+	color:#ef0056;
+	font-size:150%;
+}
+
+.tb{
+	color:gray;
+	font-size:80%;
+}
+
+#minimenu{
+	width:54%;
+	text-align:left;
+}
+
+.minimenu{
+	background-color:#ef0056;
+	border-radius:5px;
+	font-size:90%;
+}
+
+/* 테이블 시작 */
+
+#boardtable{
+	width:54%;
+	text-align:left;
+}
+
+.table{
+	background-color:white;
+	border-radius:5px;
+}

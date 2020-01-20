@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+*{
+	padding:0;
+	margin:0 auto;
+}
+
+#all{
+	width:100%;
+}
+
+/* top전체 div */
+#top{
+	width:54%;
+	font-family: 'Nanum Gothic Coding', monospace;
+}
+
+#topbanner{
+	width:100%;
+}
+
+/* 회원가입 로그인 배송조회 고객센터 */
+#topMenu{
+	text-align:right;
+	float:right;
+	margin-top:3%;
+	margin-right:5%;
+	font-size:0.750em;
+}
+
+#topMenu li{
+	display:inline;
+	list-style-type:none;
+	border:none;
+}
+
+#topMenu li a{
+	text-decoration:none;
+}
+
+.navbar-form{
+	margin-bottom:10%;
+}
+
+/* 드롭다운 : 전체메뉴 신상품 인기상품 할인/쿠폰 이벤트 */
+#dropdown > .nav > li {
+	display:inline-block;
+	position:relative;
+	padding:3%;
+	text-align:center;
+}
+
+#dropdown > .nav > li > #dropdownMenu > ul {
+	position:absolute;
+	list-style-type:none;
+	display:none;
+	padding-left:0%;
+}
+#dropdown > .nav > li:hover > #dropdownMenu > ul {
+	display:block;
+	background:white;
+	boarder:1px solid gray; 
+	border-radius:3%;
+	box-shadow:1px 1px lightgray;
+	opacity:95%;
+	padding:5%;
+}
+
+#dropdownMenu{
+	width:140%;
+	line-height:3em;
+	font-size:80%;
+	position:relative; z-index:2
+}
+
+/* top 끝! */

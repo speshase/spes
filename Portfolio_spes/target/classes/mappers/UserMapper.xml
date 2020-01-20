@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spes.mapper.UserMapper">
+
+	<!-- 회원가입 -->
+	<insert id="joinUser">
+	<![CDATA[
+		insert into users(uid, upw, uadress_num, uadress, uadress_detail, uemail, ujointime)
+		values (#{uid}, #{upw}, #{uadress_num}, #{uadress}, #{uadress_detail}, #{uemail}, sysdate())
+	]]>
+	</insert>
+	
+	<!-- 아이디 중복체크 -->
+	<select id="idolcheck" resultType="int">
+	<![CDATA[
+		select count(*) from users where uid=#{uid}
+	]]>
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="com.spes.model.UserVO">
+	<![CDATA[
+		select uid, upw from users where uid=#{uid} and upw=#{upw}
+	]]>
+	</select>
+	
+	<!-- 로그인된 경우 해당 세션id와 유효시간을 사용자 테이블에 세팅. -->
+	<update id="sessionLogin">
+		update userTable set sessionKey = #{sessionId}, sessionLimit = #{next} where userId=#{userId}
+	</update>
+	
+	<!-- 유효기간이 남아 있으면서 해당 sessionId를 가지는 사용자 정보를 꺼내오는 부분-->
+	<select id="checkSessionLogin" resultType="com.spes.model.UserVO">
+	<![CDATA[
+		select uid, upw from users where sessionKey = #{sessionId} and sessionLimit > now()
+	]]>
+	</select>
+
+</mapper>

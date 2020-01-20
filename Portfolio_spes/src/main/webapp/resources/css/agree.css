@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#middle1{
+	background-color:#efefef;
+	text-align:center;
+	font-family: 'Nanum Gothic Coding', monospace;
+}
+
+ul>li{
+	list-style: none
+}
+
+.topagree{
+	font-size:14px;
+}
+
+.btnagree{
+	background-color:#ef0056;
+	color:white;
+}
+
+.agreeP{
+	text-align:center;
+	font-size:15px;
+}
+
+.wrap{
+	position:relative;
+	width:820px;
+	height:40px;
+	color:white;
+	background:#ef0056;
+	border-radius:5px;
+	box-shadow:none;
+}
+.square{
+	color:white;
+	position:absolute;
+	padding:8px;
+}

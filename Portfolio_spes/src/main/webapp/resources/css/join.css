@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+#middle1{
+	background-color:#efefef;
+	position:relative; z-index:1;
+	text-align:center;
+}
+
+#middlein{
+	width:100%;
+	margin-left:40%;
+	text-align:left;
+}
+
+.p1{
+	text-align:left;
+}
+
+.pp1{
+	font-size:80%;
+	color:gray;
+}
+
+.join{
+	background-color:#ef0056;
+	color:white;
+}
+
+#middleTable{
+	width:"100px"
+}
+
+/* 입력 및 회원가입 완료 버튼 */
+
+.inputform{
+	width:20%;
+    height:40px;
+	padding:10px;
+	margin-bottom:7px;
+	border:1px solid lightgray;
+	border-radius:5px;
+	text-align:left;
+}
+
+/* 아이디 중복체크 */
+
+.inputformid{
+	width:14%;
+    height:40px;
+	padding:10px;
+	margin-bottom:7px;
+	border:1px solid lightgray;
+	border-radius:5px;
+	text-align:left;
+}
+
+/* 주소입력칸 */
+
+.inputform2{
+	width:6%;
+    height:40px;
+	padding:10px;
+	margin-bottom:7px;
+	border:1px solid lightgray;
+	border-radius:5px;
+	text-align:left;
+}
+
+.join{
+	width:20%;
+    height:40px;
+	background-color:#ef0056;
+	color:white;
+	border: 1px solid lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.searchadress{
+	width:5%;
+    height:40px;
+	background-color:#ef0056;
+	color:white;
+	border: 1px solid lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+/* footer
+footer{
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+}*/
+}
