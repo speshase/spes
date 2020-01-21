@@ -111,39 +111,10 @@ public class UserController {
 	/* 로그아웃 */
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session,HttpServletRequest request, HttpServletResponse response) {
-/*	Object obj = session.getAttribute("uid");
-	System.out.println(session.getAttribute("uid"));
-	System.out.println(obj);
-	System.out.println("로그아웃 진입");
-	if (obj != null ){
-		UserVO user = (UserVO)obj; // null이 아닐 경우 제거
-		System.out.println("user");
-		session.removeAttribute("user");*/
 		session.invalidate(); // 세션 전체를 날려버림
 		System.out.println("로그아웃 성공");
-/*		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie"); //쿠키를 가져와보고
-		
-		if ( loginCookie != null ){ // null이 아니면 존재하면!
-			loginCookie.setPath("/"); // 쿠키는 없앨 때 유효시간을 0으로 설정하는 것 !!! invalidate같은거 없음.
-			loginCookie.setMaxAge(0); // 쿠키 설정을 적용한다.
-			response.addCookie(loginCookie);
-			
-			// 사용자 테이블에서도 유효기간을 현재시간으로 다시 세팅해줘야함.
-			Date date = new Date(System.currentTimeMillis());
-			uservice.sessionLogin(user.getUid(), session.getId(), date);
-		}
-	}*/
+
 	return "redirect:/main/spes"; // 로그아웃 후 홈으로
 	}
 }
-	
-	// 로그아웃
-	/*
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) throws Exception{
-		
-		session.invalidate();
-		return "redirect:/";
-	}
-*/
 

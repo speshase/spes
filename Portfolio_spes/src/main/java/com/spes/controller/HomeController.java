@@ -21,13 +21,13 @@ public class HomeController {
 
 	@RequestMapping(value="/spes", method = RequestMethod.GET) //제일 처음 홈(메인)
 	public String home() throws Exception {
-		logger.info("home.jsp");
+		logger.info("main/home.jsp");
 		return "main/home";
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET) //홈(메인)에서 login.jsp로 이동
 	public String login() throws Exception {
-		logger.info("login.jsp");
+		logger.info("main/login.jsp");
 		return "main/login";
 	}
 	
@@ -35,5 +35,5 @@ public class HomeController {
 	public void agree() throws Exception {
 		logger.info("main/agree.jsp");
 	}
-	
+
 }

@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+
+<!-- jstl을 사용하기 위한 선언 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 
-	<title>Congratulation!</title>
+<jsp:include page="../include/topjsp.jsp" flush="true"></jsp:include>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	

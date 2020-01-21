@@ -13,25 +13,25 @@ public class MainmenuController {
 	private static final Logger logger =
 			LoggerFactory.getLogger(HomeController.class);
 
-	@RequestMapping(value="/new", method = RequestMethod.GET) //제일 처음 홈(메인_신상품)
+	@RequestMapping(value="/new", method = RequestMethod.GET) //신상품
 	public String newpage() throws Exception {
 		logger.info("mainManu/new.jsp");
 		return "/mainMenu/new";
 	}
 	
-	@RequestMapping(value="/best", method = RequestMethod.GET) //제일 처음 홈(메인)
+	@RequestMapping(value="/best", method = RequestMethod.GET) //인기상품
 	public String bestpage() throws Exception {
 		logger.info("mainManu/best.jsp");
 		return "/mainMenu/best";
 	}
 	
-	@RequestMapping(value="/coupon", method = RequestMethod.GET) //제일 처음 홈(메인)
+	@RequestMapping(value="/coupon", method = RequestMethod.GET) //할인/쿠폰
 	public String couponpage() throws Exception {
 		logger.info("mainManu/coupon.jsp");
 		return "/mainMenu/coupon";
 	}
 	
-	@RequestMapping(value="/event", method = RequestMethod.GET) //제일 처음 홈(메인)
+	@RequestMapping(value="/event", method = RequestMethod.GET) //이벤트
 	public String eventpage() throws Exception {
 		logger.info("mainManu/event.jsp");
 		return "/mainMenu/event";

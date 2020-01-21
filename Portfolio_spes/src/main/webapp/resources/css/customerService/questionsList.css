@@ -36,6 +36,14 @@
 }
 
 .table{
+	width:100%;
 	background-color:white;
 	border-radius:5px;
 }
+
+#qcategorycss{
+	float:left;
+	width:54%;
+	font-size:90%;
+}
+
