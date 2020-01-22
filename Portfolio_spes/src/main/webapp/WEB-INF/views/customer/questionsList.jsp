@@ -15,7 +15,7 @@
 	<link href="../resources/css/customerService/questionsList.css" rel="stylesheet" type="text/css">
 	
 	<!-- js&jquery -->
-	<script type="text/javascript" src="../resources/js/customerService/questions&New.js"></script>
+	<script type="text/javascript" src="../resources/js/customerService/questions.js"></script>
 
 	<!-- middle1 시작 -->
 	<br><br>
@@ -41,49 +41,87 @@
 		<div id="qcategorycss">
 			<select name="qcategory" id="qcategory" onchange="qcatogory();">
 			<option >카테고리전체</option>
-				<option name="qcategory" value="pay">주문/결제</option>
-				<option name="qcategory" value="cancel">취소/교환/반품</option>
-				<option name="qcategory" value="delivery">배송문의</option>
-				<option name="qcategory" value="coupon">쿠폰/할인</option>
-				<option name="qcategory" value="memverinfo">회원정보문의</option>
-				<option name="qcategory" value="serviceuse">서비스이용 및 기타</option>
+				<option value="pay">주문/결제</option>
+				<option value="cancel">취소/교환/반품</option>
+				<option value="delivery">배송문의</option>
+				<option value="coupon">쿠폰/할인</option>
+				<option value="memverinfo">회원정보문의</option>
+				<option value="serviceuse">서비스이용 및 기타</option>
 			</select>
 		</div>
 		<br><br>
-	</div>
+	</div> <!-- 미니메뉴 테이블 끝 -->
 
-	<!-- 게시글 테이블 -->
+	<!-- 게시글 테이블 시작 -->
 	<div id="boardtable">
-	<form id="qcategorywrite" method="get">
+	<form action="questionsWrite" id="questionsForm" name=questionsForm">
 		<table class="table" width="100%">
-		<thead>
+		<!-- 아이디가 관리자면 글수정과 글삭제가 보임 -->
+		<c:choose>
+			<c:when test="${sessionScope.uid=='admin'}">
+				<thead>
+					<tr>
+					<th width="25%">카테고리</th>
+					<th>제목</th>
+					<th width="30%">관리</th>
+					</tr>
+				</thead>
+		
+				<tbody>
+					<c:forEach items="${qcatogoryList}" var="list">        
+					<tr>
+					<td>${list.qcategoryk}</td>
+					<td>
+						<a class="content">${list.qsubject}&emsp;
+						</a>
+					</td>
+					<td>
+						<input type="button" value="수정" class="modify">
+						<input type="button" value="삭제" class="delete">
+					</td>
+					</tr>
+					
+					<tr>
+					<td></td>
+					<td>
+						<div class="content2"><center><p class="qcontent">${list.qcontent}</p></center></div>
+					</td>
+					<td></td>
+					</tr>
+					</c:forEach>
+				</c:when>
+			
+				<c:otherwise>
+				<thead>
+					<tr>
+					<th width="25%">카테고리</th>
+					<th>제목</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${qcatogoryList}" var="list">        
+					<tr>
+					<td>${list.qcategoryk}</td>
+					<td><a class="content">${list.qsubject}</a></td>
+					</tr>
+					<tr>
+					<td></td>
+					<td>
+					<div class="content2"><center><p class="qcontent">${list.qcontent}</p></center></div>
+					</td>
+					</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 			<tr>
-				<tr>
-					<th width="25%">카테고리</th> <th width="80%">제목</th>
-				</tr>
-		</thead>
-		<tbody> 
-			<c:forEach items="${qcatogoryList}" var="list">        
-			<tr>
-			<td>${list.qcategoryk}</td>
-			<td><a id="showClick">${list.qsubject}</a></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div id="showContent" style="display:none">${list.qcontent}</div>
-				</td>
-			</tr>
-			</c:forEach>
-			<tr>
-			<td colspan="5"> 페이지 </td>
+			<td colspan="3"> 페이지 </td>
 			</tr>
 			
 			<!-- 아이디가 관리자면 글쓰기가 보임 -->
 			<c:choose>
 				<c:when test="${sessionScope.uid=='admin'}">
 					<tr>
-					<td colspan="4"></td>
-					<td><input type="submit" value="글쓰기" id="write" class="btn btn-primary"></td>
+					<td><input type="submit" value="글쓰기" class="write"></td>
 					</tr>
 				</c:when>
 				

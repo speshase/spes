@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<!-- css -->
-	<link href="../resources/css/customerService/clist.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/customerService/customerService.css" rel="stylesheet" type="text/css">
 	
 	<!-- js&jquery -->
 	<script type="text/javascript" src="../resources/js/customerService/clist.js"></script>
@@ -38,9 +38,9 @@
 	</div>
 
 	
-	<!-- 테이블 시작 -->
+	<!-- 게시글 테이블 시작 -->
 	<div id="boardtable">
-	<form id="" method="get">
+	<form id="customerServiceWrite" method="get" enctype="multipart/form-data">
 		<table class="table" width="100%">
 		<thead>
 			<tr>
@@ -50,36 +50,28 @@
 			<th>답변여부</th>
 			</tr>
 		</thead>
-		<tbody>
-		<c:forEach items="${list}" var="board">           
-			<tr>
-			<td>${board.no}</td>
-			<td><a href=detail?no=${board.no}>${board.subject}</a></td>
-			<td>${board.write_date}</td>
-			<td>${board.answer}</td>
-			</tr>
-		</c:forEach> 
-			<tr>
-			<td colspan="5">
-		<center>
-			<c:if test="${page.prev}">
-			<a href="list?pageNum=${page.startPage-10}&amount=${page.cri.amount}&keyword=${page.cri.keyword}">Previous</a>
-			</c:if>
-                   		
-			<c:forEach var="num" begin="${page.startPage}" end="${page.endPage}">
-			<a href="list?pageNum=${num}&amount=${page.cri.amount}&keyword=${page.cri.keyword}">${num}</a>
-			</c:forEach>
-	                   		
-			<c:if test="${page.next}">
-			<a href="list?pageNum=${page.endPage+1}&amount=${page.cri.amount}&keyword=${page.cri.keyword}">Next</a>
-			</c:if>
-		</center>
-			</td>
-			</tr>
-			<tr>
-			<td colspan="4"></td>
-			<td><input type="submit" value="글쓰기" id="write" class="btn btn-primary"></td>
-			</tr>
+		
+		<tbody>        
+		
+		<tr>
+		<td colspan="4"> 페이지 </td>
+		</tr>
+			
+		<!-- 아이디가 관리자면 글쓰기가 보임 -->
+		<c:choose>
+			<c:when test="${sessionScope.uid=='admin'}">
+				<tr>
+				<td colspan="2" width="30%"><input type="submit" value="글쓰기" class="write"></td>
+				</tr>
+			</c:when>
+			
+			<c:otherwise>
+				<tr>
+				<td colspan="4"></td>
+				<td></td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
 		</tbody>
 	</table>
 	<br><br>

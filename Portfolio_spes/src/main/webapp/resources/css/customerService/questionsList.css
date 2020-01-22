@@ -39,6 +39,7 @@
 	width:100%;
 	background-color:white;
 	border-radius:5px;
+	font-size:90%;
 }
 
 #qcategorycss{
@@ -47,3 +48,39 @@
 	font-size:90%;
 }
 
+.qcontent{
+	text-align:left;
+	font-size:90%;
+}
+
+/* 글쓰기, 글수정, 글삭제 버튼 */
+
+.write{
+	width:50%;
+    height:40px;
+	background-color:#ef0056;
+	color:white;
+	border: 1px solid lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.modify{
+	width:25%;
+    height:40px;
+	background-color:skyblue;
+	color:white;
+	border: 1px solid lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.delete{
+	width:25%;
+    height:40px;
+	background-color:#9b37ff;
+	color:white;
+	border: 1px solid lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}

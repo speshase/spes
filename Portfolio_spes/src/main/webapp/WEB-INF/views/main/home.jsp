@@ -50,9 +50,9 @@
 							hight="350px"></td>
 					</tr>
 					<tr>
-						<td id="salename" rowpan="2">&nbsp[미트클레버] 숙성 한돈 목살 스테이크</td>
+						<td id="salename" rowpan="2">&nbsp;[미트클레버] 숙성 한돈 목살 스테이크</td>
 						<td id=salecolor width="15%"><h4>9,030원</h4></td>
-						<td id="salename" rowpan="2">&nbsp[올면] 쫄깃한 쭈꾸미 볶음면</td>
+						<td id="salename" rowpan="2">&nbsp;[올면] 쫄깃한 쭈꾸미 볶음면</td>
 						<td id=salecolor width="15%"><h4>10,200원</h4></td>
 					</tr>
 				</table>

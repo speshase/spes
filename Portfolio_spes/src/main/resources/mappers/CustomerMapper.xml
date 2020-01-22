@@ -5,18 +5,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spes.mapper.CustomerMapper">
 
-	<!-- 카테고리 조회
-	<select id="qcategory" resultType="com.speshase.model.CustomerVO">
-	<![CDATA[
-		select * from questionsList where qcategory=#{qcategory}
-	]]>
-	</select> -->
 	
-	<!-- 카테고리 전체 조회 -->
+	<!-- 자주묻는 질문 + 조회 -->
 	<select id="qcategoryList" resultType="com.spes.model.CategoryVO">
 	<![CDATA[
-		select * from questionsList order by qno desc;
+		select * from questionsList order by qno desc
 	]]>
 	</select>
+	
+	<!-- 자주묻는 질문 + 글쓰기 -->
+	<insert id="qestionisWrite">
+	<![CDATA[
+		insert into questionsList (qcategory, qcategoryk, qsubject, qcontent)
+		values (#{qcategory}, #{qcategoryk}, #{qsubject}, #{qcontent})
+	]]>
+	</insert>
 
 </mapper>

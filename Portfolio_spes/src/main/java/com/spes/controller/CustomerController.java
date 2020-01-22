@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spes.model.CategoryVO;
 import com.spes.service.CustomerService;
 
 @Controller
@@ -33,7 +34,7 @@ public class CustomerController {
 		return "customer/customerService";
 	}
 
-	@RequestMapping(value="/questionsList", method = RequestMethod.GET) //자주묻는 질문
+	@RequestMapping(value="/questionsList", method = RequestMethod.GET) //자주묻는 질문 + 조회
 	public String questionsList(Model model) throws Exception {
 		logger.info("customer/questionsList.jsp");
 		model.addAttribute("qcatogoryList", cservice.qcategoryList());
@@ -46,11 +47,10 @@ public class CustomerController {
 		return "customer/travisNews";
 	}
 	
-	//자주묻는 질문 - 카테고리 조회(전체리스트)
-	@RequestMapping(value="/qcategory", method = RequestMethod.GET)
-	public void qcategoryList(Model model) throws Exception {
-		model.addAttribute("qcatogoryList", cservice.qcategoryList());
-		logger.info("qcatogoryList 결과 = " + cservice.qcategoryList());
+	@RequestMapping(value="/questionsWrite", method = RequestMethod.GET) //자주묻는 질문 + 글쓰기
+	public String questionsWrite() throws Exception {
+		logger.info("customer/questionsWrite.jsp");
+		return "customer/questionsWrite";
 	}
 	
 }

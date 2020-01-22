@@ -37,7 +37,7 @@
 		<br>
 	
 	<!-- 카테고리 -->
-		<div id="qcategorycss">
+		<div id="qcategorylistcss">
 			<select name="qcategory" id="qcategory" onchange="qcatogory();">
 			<option >카테고리전체</option>
 				<option name="qcategory" value="notice">공지</option>
@@ -53,45 +53,31 @@
 	
 	<!-- 게시글 테이블 -->
 	<div id="boardtable">
-	<form id="" method="get">
+	<form action="travisNewWrite" method="post">
 		<table class="table" width="100%">
 		<thead>
 			<tr>
 				<tr>
-					<th width="25%">번호</th> <th width="80%">제목</th>
+					<th width="25%">번호</th>
+					<th width="80%">제목</th>
 				</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${list}" var="board">           
 			<tr>
-			<td><a href=detail?no=${board.no}>${board.subject}</a></td>
-			<td>${board.content}</td>
+			<td><a href=detail?no=${board.no}>번호...</a></td>
+			<td>제목...</td>
 			</tr>
 		</c:forEach> 
 			<tr>
-			<td colspan="5">
-		<center>
-			<c:if test="${page.prev}">
-			<a href="list?pageNum=${page.startPage-10}&amount=${page.cri.amount}&keyword=${page.cri.keyword}">Previous</a>
-			</c:if>
-                   		
-			<c:forEach var="num" begin="${page.startPage}" end="${page.endPage}">
-			<a href="list?pageNum=${num}&amount=${page.cri.amount}&keyword=${page.cri.keyword}">${num}</a>
-			</c:forEach>
-	                   		
-			<c:if test="${page.next}">
-			<a href="list?pageNum=${page.endPage+1}&amount=${page.cri.amount}&keyword=${page.cri.keyword}">Next</a>
-			</c:if>
-		</center>
-			</td>
+			<td colspan="2"> 페이지 </td>
 			</tr>
 			
 			<!-- 아이디가 관리자면 글쓰기가 보임 -->
 			<c:choose>
 				<c:when test="${sessionScope.uid=='admin'}">
 					<tr>
-					<td colspan="4"></td>
-					<td><input type="submit" value="글쓰기" id="write" class="btn btn-primary"></td>
+					<td><input type="submit" value="글쓰기" id="write" class="write"></td>
 					</tr>
 				</c:when>
 				
