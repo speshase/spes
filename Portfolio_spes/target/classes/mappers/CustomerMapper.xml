@@ -7,18 +7,33 @@
 
 	
 	<!-- 자주묻는 질문 + 조회 -->
-	<select id="qcategoryList" resultType="com.spes.model.CategoryVO">
+	<select id="questionsList" resultType="com.spes.model.CategoryVO">
 	<![CDATA[
 		select * from questionsList order by qno desc
 	]]>
 	</select>
 	
 	<!-- 자주묻는 질문 + 글쓰기 -->
-	<insert id="qestionisWrite">
+	<insert id="questionsWrite">
 	<![CDATA[
 		insert into questionsList (qcategory, qcategoryk, qsubject, qcontent)
 		values (#{qcategory}, #{qcategoryk}, #{qsubject}, #{qcontent})
 	]]>
 	</insert>
+	
+	<!-- 자주묻는 질문 + 글수정 보기 -->
+	<select id="questionsModify" resultType="com.spes.model.CategoryVO">
+		select * from questionsList where qno=#{qno}
+	</select>
+	
+	<!-- 자주묻는 질문 + 글수정 완료 -->
+	<update id="questionsModifyEnd">
+		update questionsList set qsubject=#{qsubject}, qcontent=#{qcontent} where qno=#{qno}
+	</update>
+	
+	<!-- 자주묻는 질문 + 글삭제 -->
+	<delete id="questionsDelete">
+		delete from questionsList where qno = #{qno}
+	</delete>
 
 </mapper>

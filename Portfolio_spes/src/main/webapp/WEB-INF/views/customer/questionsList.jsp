@@ -30,7 +30,7 @@
 		<div id="minimenu">
 		<table class="minimenu">
 			<tr>
-				<td width="33%"><a href="questionsList" style="color:white;">자주묻는 질문</a></td>
+				<td width="33%"><a href="http://localhost:8080/spes/customer/questionsList" style="color:white;">자주묻는 질문</a></td>
 				<td width="33%"><a href="http://localhost:8080/spes/customer/customerService" style="color:white;">고객의 소리</a></td>
 				<td width="33%"><a href="http://localhost:8080/spes/customer/travisNews" style="color:white;">트라비스 소식</a></td>
 			</tr>
@@ -54,7 +54,7 @@
 
 	<!-- 게시글 테이블 시작 -->
 	<div id="boardtable">
-	<form action="questionsWrite" id="questionsForm" name=questionsForm">
+	<form action="questionsWrite" id="questionsForm">
 		<table class="table" width="100%">
 		<!-- 아이디가 관리자면 글수정과 글삭제가 보임 -->
 		<c:choose>
@@ -72,19 +72,22 @@
 					<tr>
 					<td>${list.qcategoryk}</td>
 					<td>
-						<a class="content">${list.qsubject}&emsp;
+						<a class="content" onclick="questionShow(${list.qno})">${list.qsubject}&emsp;
 						</a>
 					</td>
 					<td>
-						<input type="button" value="수정" class="modify">
-						<input type="button" value="삭제" class="delete">
+					<!-- a태그에 번호값을 넣어서 href를 통해서 controller로 보냄 -->
+						<button value="수정" class="modify"><a class="modify2" href="questionsModify?qno=${list.qno}">수정</a></button>
+
+					<!-- input botton태그에 해당 값을 onclick함수에 담아서 js로 보냄_ajax사용 -->
+						<input type="button" class="delete" onclick="questionDelete(${list.qno})" value="삭제">
 					</td>
 					</tr>
 					
 					<tr>
 					<td></td>
 					<td>
-						<div class="content2"><center><p class="qcontent">${list.qcontent}</p></center></div>
+						<div class="contentt${list.qno}" style ="display:none"><center><p class="qcontent">${list.qcontent}</p></center></div>
 					</td>
 					<td></td>
 					</tr>

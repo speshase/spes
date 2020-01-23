@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- css -->
-	<link href="../resources/css/customerService/questionsWrite.css" rel="stylesheet" type="text/css">
+	<link href="../resources/css/customerService/questionsModify.css" rel="stylesheet" type="text/css">
 	
 	<!-- js&jquery -->
 	<script type="text/javascript" src="../resources/js/customerService/questionsWrite.js"></script>
@@ -34,12 +34,12 @@
 
 	<!-- 게시글 테이블 시작 -->
 	<div id="boardtable">
-	<form action="questionsWriteEnd" method="post" enctype="multipart/form-data">
+	<form action="questionsModifyEnd" method="post" enctype="multipart/form-data">
 		<table class="table" width="100%">
-			
+	
 				<tr>
 				<th width="10%">글번호</th>
-				<td width="30%">자동입력</td>
+				<td width="30%"><input type="hidden" name="qno" value="${modify.qno}" readonly>${modify.qno}</td>
 				</tr>
 				
 				<tr>
@@ -47,13 +47,7 @@
 				<td>
 				<div id="qcategorycss">
 					<select name="qcategory">
-						<option>카테고리전체</option>
-						<option value="pay">pay</option>
-						<option value="cancel">cancel</option>
-						<option value="delivery">delivery</option>
-						<option value="coupon">coupon</option>
-						<option value="memverinfo">memverinfo</option>
-						<option value="serviceuse">serviceuse</option>
+						<option>${modify.qcategoryk}</option>
 					</select>
 				</div>
 				</td>
@@ -64,13 +58,7 @@
 				<td>
 				<div id="qcategorycss">
 					<select name="qcategoryk">
-						<option>카테고리전체</option>
-						<option value="주문/결제">주문/결제</option>
-						<option value="취소/교환/반품">취소/교환/반품</option>
-						<option value="배송문의">배송문의</option>
-						<option value="쿠폰/할인">쿠폰/할인</option>
-						<option value="회원정보문의">회원정보문의</option>
-						<option value="서비스이용 및 기타">서비스이용 및 기타</option>
+						<option>${modify.qcategory}</option>
 					</select>
 				</div>
 				</td>
@@ -78,19 +66,18 @@
 				
 				<tr>
 				<th>글제목</th>
-				<td><input type="text" name="qsubject" size="50%"></td>
+				<td><input type="text" name="qsubject" size="50%" value="${modify.qsubject}"></td>
 				</tr>
 				
 				<tr>
 				<th>글내용</th>
 				<td height="30%">
-				<textarea name="qcontent" cols="100%" rows="10%">
-				</textarea>
+				<textarea name="qcontent" cols="100%" rows="10%">${modify.qcontent}</textarea>
 				</td>
 				</tr>
 				
 				<tr>
-				<td colspan="2"><input type="submit" value="등록" class="write"></td>
+				<td colspan="2"><input type="submit" value="수정" class="modify"></td>
 				</tr>
 										
 			</table>

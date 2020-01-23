@@ -5,52 +5,58 @@ $(document).ready(function(){
 	
 	//class가 modify인 버튼을 클릭했을 때(글수정버튼을 클릭했을 때)
 	$(".modify").click(function(){
-		alert("modify");
+		//alert("modify");
 		$("#questionsForm").attr("action","questionsModify").submit();
-	})
+	});
+});
+
+/* 게시글 삭제 버튼 */
+
+function questionDelete(qno){
+	//alert(qno);
+	var result = confirm("정말 게시글을 삭제하시겠습니까?");
+	//alert(result);
 	
-	//class가 delete인 버튼을 클릭했을 때(글삭제버튼을 클릭했을 때)
-	$(".delete").click(function(){
-		alert("delete");
-		$("#questionsForm").attr("action","customer/questionsDelete")
-	})
-
+	if(result){
 	
+	$.ajax({
+		type:"GET",
+		url:"questionsDelete?qno="+qno,
+		success: function(){
+			alert("삭제하였습니다.")
+			location.reload();
+		},
+		
+		error: function(xhr, status, error) {
+			alert("error : 삭제에 실패하였습니다.");
+		}
+	});
+		
+	}else {
+		alert("삭제를 취소하였습니다.")
+	}
+}
 
-//alert("QuestionsList 연결!")
-	/*
-	$("#qcategory").change(function(){
-		var qca =  $("#qcategory option:selected").val();
-		//alert(qca);
-    
-		$.ajx({
-			type : "GET",
-            url : "qcategory?qca="+qca,
-            dataType:"json",
-            success : function(data) {
-            	console.log(data);
 
-            },
-            error
-		})
-	});*/
-
-	
 /* questionsList 제목 클릭시 내용 나타내기 */
 
-	// jquery를 활용 //
-	// show & hide & toggle
-
-	$(".content2").hide();
+function questionShow(qno){
+	//alert(qno);
+	
+	//$(".content1").hide();
 	var contentclick = false;
+	
 	$(".content").click(function() { // show메서드 실행
+		//alert(qno);
 		if(contentclick == false) {
-			$(".content2").show(); // slow는 속도(fast)
-			
+			$(".contentt"+qno).show(); // slow는 속도(fast)
+			//alert(".content2"+qno);
+			//alert(qno);
 			contentclick = true;
 		}else {
-			$(".content2").hide();
+			$(".contentt"+qno).hide();
+			//alert(qno);
 			contentclick = false;
 		}
 	});
-});
+}

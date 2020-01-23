@@ -70,7 +70,7 @@
     height:40px;
 	background-color:skyblue;
 	color:white;
-	border: 1px solid lightgray;
+	border: 1px none lightgray;
 	border-radius:5px;
 	box-shadow:none;
 }
@@ -80,7 +80,27 @@
     height:40px;
 	background-color:#9b37ff;
 	color:white;
-	border: 1px solid lightgray;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.modify2{
+	width:25%;
+    height:40px;
+	background-color:skyblue;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.delete2{
+	width:25%;
+    height:40px;
+	background-color:#9b37ff;
+	color:white;
+	border: 1px none lightgray;
 	border-radius:5px;
 	box-shadow:none;
 }
