@@ -42,6 +42,11 @@
 	margin-bottom:10%;
 }
 
+/* 검색 기능 */
+.search-query{
+	font-size:90%;
+}
+
 /* 드롭다운 : 전체메뉴 신상품 인기상품 할인/쿠폰 이벤트 */
 #dropdown > .nav > li {
 	display:inline-block;

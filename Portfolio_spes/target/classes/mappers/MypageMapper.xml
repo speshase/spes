@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spes.mapper.MypageMapper">
+
+	<!-- 장바구니 중복검사 -->
+	<select id="cartcheck" resultType="int">
+	<![CDATA[
+		select count(*) from cart where uid=#{uid} and np=#{np};
+	]]>
+	</select>
+
+	<!-- 장바구니 담기 -->
+	<insert id="cartin">
+	<![CDATA[
+		insert into cart (np, uid, cfile1, ctitle, count, cpprice, cppricedc, total)
+		values (#{np}, #{uid}, #{cfile1}, #{ctitle}, #{count}, #{cpprice}, #{cppricedc}, #{count}*#{cpprice})
+	]]>
+	</insert>
+	
+	<!-- 장바구니 조회 -->
+	<select id="cartList" resultType="com.spes.model.CartVO">
+	<![CDATA[
+		select cp, uid, cfile1, ctitle, count, cpprice, total
+		from cart where uid=#{uid} order by cp desc
+	]]>
+	</select>
+
+	<!-- 장바구니 수량 변경 -->
+	<update id="cartModify">
+		update cart set count=#{count}, total=#{count}*#{cpprice} where cp=#{cp} and uid=#{uid}
+	</update>
+	
+	<!-- 트라비스 소식 + 글삭제 -->
+	<delete id="cartDelete">
+		delete from cart where cp=#{cp} and uid=#{uid}
+	</delete>
+
+</mapper>

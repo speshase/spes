@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+#middle1{
+	background-color:#efefef;
+	position:relative; z-index:1;
+	text-align:center;
+}
+
+/* 테이블 시작 */
+
+#boardtable{
+	width:54%;
+	text-align:left;
+}
+
+#checkEmail{
+	width:54%;
+	margin-left:34.4%;
+	text-align:left;
+}
+
+.p1{
+	display:inline;
+	margin-left:-50%;
+}
+
+.p2{
+	display:inline;
+	margin-left:-43%;
+}
+
+.table{
+	width:100%;
+	border-radius:5px;
+	font-size:90%;
+	border: 1px solid #444444;
+    border-collapse: collapse;
+}
+
+/* 아이디찾기 비밀번호 찾기 버튼 */
+
+.inputform{
+	width:300px;
+    height:40px;
+	padding:1%;
+	margin-bottom:7px;
+	border:1px solid lightgray;
+	border-radius:5px;
+	text-align:left;
+}
+
+.inputform2{
+	width:175px;
+    height:40px;
+	padding:1%;
+	margin-bottom:7px;
+	border:1px solid lightgray;
+	border-radius:5px;
+	text-align:left;
+}
+
+.checkEmail{
+	width:120px;
+    height:40px;
+	background-color:#ef0056;
+	color:white;
+	border: 1px solid lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.findid{
+	width:300px;
+    height:40px;
+	background-color:#ef0056;
+	color:white;
+	border: 1px solid lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.findpw{
+	width:300px;
+    height:40px;
+	background-color:#ef0056;
+	color:white;
+	border: 1px solid lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+

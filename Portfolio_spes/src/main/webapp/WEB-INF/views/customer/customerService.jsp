@@ -4,13 +4,11 @@
 <!-- jstl을 사용하기 위한 선언 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html>
-
+<!-- include 이후 -->
 <jsp:include page="../include/topjsp.jsp" flush="true"></jsp:include>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<!-- css -->
 	<link href="../resources/css/customerService/customerService.css" rel="stylesheet" type="text/css">
 	
@@ -30,8 +28,8 @@
 	<table class="minimenu">
 		<tr>
 			<td width="33%"><a href="http://localhost:8080/spes/customer/questionsList" style="color:white;">자주묻는 질문</a></td>
-			<td width="33%"><a href="http://localhost:8080/spes/customer/customerService" style="color:white;">고객의 소리</a></td>
-			<td width="33%"><a href="http://localhost:8080/spes/customer/travisNews" style="color:white;">트라비스 소식</a></td>
+			<td width="33%"><a href="http://localhost:8080/spes/customer/customerService" style="color:white;">▶고객의 소리◀</a></td>
+			<td width="33%"><a href="http://localhost:8080/spes/customer/travisNewsList" style="color:white;">트라비스 소식</a></td>
 		</tr>
 	</table>
 	<br>
@@ -40,36 +38,56 @@
 	
 	<!-- 게시글 테이블 시작 -->
 	<div id="boardtable">
-	<form id="customerServiceWrite" method="get" enctype="multipart/form-data">
+	<form action="customerServiceWrite" method="get" enctype="multipart/form-data">
 		<table class="table" width="100%">
+
+		<!-- 로그인 상태면 글쓰기가 보임 -->
+		<c:choose>
+			<c:when test="${sessionScope.uid!=null || log==true}">
+				
 		<thead>
 			<tr>
-			<th width="10%">번호</th>
-			<th width="60%">제목</th>
-			<th width="10%">작성날짜</th>
-			<th>답변여부</th>
+			<th width="15%">번호</th>
+			<th width="55%">제목</th>
+			<th width="30%">작성날짜</th>
 			</tr>
 		</thead>
 		
-		<tbody>        
-		
+		<tbody>
+		<c:forEach items="${customerService}" var="cservice">        
+			<tr>
+			<td>${cservice.cno}</td>
+			<td><a href=customerServiceDetail?cno=${cservice.cno}>${cservice.csubject}</a></td>
+			<td>${cservice.cwrite_date}</td>
+			</tr>
+		</c:forEach>
+	<tr>
+	<td colspan="3">
+		<center>
+			<c:if test="${page.prev}">
+				<a href="customerService?pageNum=${page.startPage-10}&amount=${page.cri.amount}">[이전]</a>
+			</c:if>
+                 		
+			<c:forEach var="num" begin="${page.startPage}" end="${page.endPage}">
+				<a href="customerService?pageNum=${num}&amount=${page.cri.amount}">${num}&emsp;</a>
+			</c:forEach>
+	                   		
+			<c:if test="${page.next}">
+				<a href="customerService?pageNum=${page.endPage+1}&amount=${page.cri.amount}">[다음]</a>
+			</c:if>
+		</center>
+	</td>
+	</tr>
 		<tr>
-		<td colspan="4"> 페이지 </td>
+			<td colspan="2"></td>
+			<td width="30%"><input type="submit" value="글쓰기" class="write"></td>
 		</tr>
-			
-		<!-- 아이디가 관리자면 글쓰기가 보임 -->
-		<c:choose>
-			<c:when test="${sessionScope.uid=='admin'}">
-				<tr>
-				<td colspan="2" width="30%"><input type="submit" value="글쓰기" class="write"></td>
-				</tr>
 			</c:when>
 			
 			<c:otherwise>
-				<tr>
-				<td colspan="4"></td>
-				<td></td>
-				</tr>
+				<br><br><br>
+				<p><center>로그인 하시면 글을 작성 · 확인하실 수 있습니다.</center></p>
+				<br><br><br>
 			</c:otherwise>
 		</c:choose>
 		</tbody>
@@ -83,5 +101,6 @@
 <!-- 최하단 부트스트랩 -->
 <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
 		CopyRight &copy; 2020 speshase All Rights Reserved. </footer>
-	
+
+</body>
 </html>

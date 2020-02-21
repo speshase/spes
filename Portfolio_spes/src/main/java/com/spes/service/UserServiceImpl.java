@@ -1,6 +1,7 @@
 package com.spes.service;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,40 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserVO checkSessionLogin(String sessionId) {
 		return um.checkSessionLogin(sessionId);
+	}
+	
+	//회원정보 수정 보기
+	public UserVO userModify(String userId) throws Exception {
+		return um.userModify(userId);
+	}
+	
+	//회원정보 수정 완료
+	public void userModifyEnd(UserVO user) throws Exception {
+		um.userModifyEnd(user);
+	}
+	
+	//아이디찾기
+	public String findid(UserVO user) throws Exception {
+		return um.findid(user);
+	}
+	
+	//비밀번호 찾기
+	public String findpw(UserVO user) throws Exception {
+		return um.findpw(user);
+	}
+
+	//비밀번호 수정 완료
+	@Override
+	public void pwModify(UserVO user) throws Exception {
+		System.out.println("비밀번호 바꾸기 Service : " + user);
+		um.pwModify(user);
+	}
+
+	//회원탈퇴
+	@Override
+	public void userleave(UserVO user) throws Exception {
+		um.userleave(user);
+		
 	}
 	
 }

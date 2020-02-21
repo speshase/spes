@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spes.mapper.MainmenuMapper">
+
+	<!-- 전체상품 조회 -->
+	<select id="allmenu" resultType="com.spes.model.NewVO">
+		select * from newProduction
+		union
+		select * from bestProduction
+		union
+		select * from couponProduction order by np desc
+	</select>
+
+	<!-- 신상품 등록 -->
+	<insert id="newWrite">
+	<![CDATA[
+		insert into newProduction (nptitle, npprice, nptext, npdate_time, sfile1, sfile2, cname) values
+		(#{newVO.nptitle}, #{newVO.npprice}, #{newVO.nptext}, sysdate(), #{file1}, #{file2}, #{newVO.cname})
+	]]>
+	</insert>
+	
+	<!-- 신상품 조회 -->
+	<select id="newpageList" resultType="com.spes.model.NewVO">
+	<![CDATA[
+		select * from newProduction order by np desc
+	]]>
+	</select>
+	
+	<!-- 신상품 디테일 조회 -->
+	<select id="newDetail" resultType="com.spes.model.NewVO">
+	<![CDATA[
+		select * from newProduction where np=#{np}
+	]]>
+	</select>
+	
+	<!-- 신상품 수정 완료1 file1 null -->
+	<update id="newModify1">
+		update newProduction set nptitle=#{newVO.nptitle}, npprice=#{newVO.npprice} ,nptext=#{newVO.nptext},
+		sfile1=(select sfile1 from (select sfile1 from newProduction where np=#{newVO.np}) as tmp),
+		sfile2=#{file2}
+		where np=#{newVO.np}
+	</update>
+	
+	<!-- 신상품 수정 완료2 file2 null -->
+	<update id="newModify2">
+		update newProduction set nptitle=#{newVO.nptitle}, npprice=#{newVO.npprice} ,nptext=#{newVO.nptext},
+		sfile1=#{file1},
+		sfile2=(select sfile2 from (select sfile2 from newProduction where np=#{newVO.np}) as tmp)
+		where np=#{newVO.np}
+	</update>
+	
+	<!-- 신상품 수정 완료3 file1 != null and file2 != null -->
+	<update id="newModify3">
+		update newProduction set nptitle=#{newVO.nptitle}, npprice=#{newVO.npprice} ,nptext=#{newVO.nptext},
+		sfile1=#{file1}, sfile2=#{file2}
+		where np=#{newVO.np}
+	</update>
+	
+	<!-- 신상품 수정 완료4 file1 == null and file2 == null -->
+	<update id="newModify4">
+		update newProduction set nptitle=#{newVO.nptitle}, npprice=#{newVO.npprice} ,nptext=#{newVO.nptext},
+		sfile1=(select sfile1 from (select sfile1 from newProduction where np=#{newVO.np}) as tmp),
+		sfile2=(select sfile2 from (select sfile2 from newProduction where np=#{newVO.np}) as tmp)
+		where np=#{newVO.np}
+	</update>
+	
+	<!-- 신상품 삭제  -->
+	<delete id="newDelete">
+	<![CDATA[
+		 delete from newProduction where np=#{np}
+	]]>
+	</delete>
+	
+	
+	
+	<!-- 인기상품 등록 -->
+	<insert id="bestWrite">
+	<![CDATA[
+		insert into bestProduction (bptitle, bpprice, bptext, bpdate_time, bfile1, bfile2, cname) values
+		(#{bestVO.bptitle}, #{bestVO.bpprice}, #{bestVO.bptext}, sysdate(), #{file1}, #{file2}, #{bestVO.cname})
+	]]>
+	</insert>
+	
+	<!-- 인기상품 조회 -->
+	<select id="bestpageList" resultType="com.spes.model.BestVO">
+	<![CDATA[
+		select * from bestProduction order by np desc
+	]]>
+	</select>
+	
+	<!-- 인기상품 디테일 조회 -->
+	<select id="bestDetail" resultType="com.spes.model.BestVO">
+	<![CDATA[
+		select * from bestProduction where np=#{np}
+	]]>
+	</select>
+	
+	<!-- 인기상품 수정 완료1 file1 null -->
+	<update id="bestModify1">
+		update bestProduction set bptitle=#{bestVO.bptitle}, bpprice=#{bestVO.bpprice} ,bptext=#{bestVO.bptext},
+		bfile1=(select bfile1 from (select bfile1 from bestProduction where np=#{bestVO.np}) as tmp),
+		bfile2=#{file2}
+		where np=#{bestVO.np}
+	</update>
+	
+	<!-- 인기상품 수정 완료2 file2 null -->
+	<update id="bestModify2">
+		update bestProduction set bptitle=#{bestVO.bptitle}, bpprice=#{bestVO.bpprice} ,bptext=#{bestVO.bptext},
+		bfile1=#{file1},
+		bfile2=(select bfile2 from (select bfile2 from bestProduction where np=#{bestVO.np}) as tmp)
+		where np=#{bestVO.np}
+	</update>
+	
+	<!-- 인기상품 수정 완료3 file1 != null and file2 != null -->
+	<update id="bestModify3">
+		update bestProduction set bptitle=#{bestVO.bptitle}, bpprice=#{bestVO.bpprice} ,bptext=#{bestVO.bptext},
+		bfile1=#{file1}, bfile2=#{file2}
+		where np=#{bestVO.np}
+	</update>
+	
+	<!-- 인기상품 수정 완료4 file1 == null and file2 == null -->
+	<update id="bestModify4">
+		update bestProduction set bptitle=#{bestVO.bptitle}, bpprice=#{bestVO.bpprice} ,bptext=#{bestVO.bptext},
+		bfile1=(select bfile1 from (select bfile1 from bestProduction where np=#{bestVO.np}) as tmp),
+		bfile2=(select bfile2 from (select bfile2 from bestProduction where np=#{bestVO.np}) as tmp)
+		where np=#{bestVO.np}
+	</update>
+	
+	<!-- 인기상품 삭제  -->
+	<delete id="bestDelete">
+	<![CDATA[
+		 delete from bestProduction where np=#{np}
+	]]>
+	</delete>
+	
+	
+	
+	<!-- 할인/쿠폰상품 등록 -->
+	<insert id="couponWrite">
+	<![CDATA[
+		insert into couponProduction (cptitle, cpprice, cppricedc, cptext, cpdate_time, cfile1, cfile2, cname) values
+		(#{couponVO.cptitle}, #{couponVO.cpprice}, #{couponVO.cppricedc}, #{couponVO.cptext}, sysdate(), #{file1}, #{file2}, #{couponVO.cname})
+	]]>
+	</insert>
+	
+	<!-- 할인/쿠폰상품 조회 -->
+	<select id="couponList" resultType="com.spes.model.CouponVO">
+	<![CDATA[
+		select * from couponProduction order by np desc
+	]]>
+	</select>
+	
+	<!-- 할인/쿠폰상품 디테일 조회 -->
+	<select id="couponDetail" resultType="com.spes.model.CouponVO">
+	<![CDATA[
+		select * from couponProduction where np=#{np}
+	]]>
+	</select>
+	
+	<!-- 할인/쿠폰상품 수정 완료1 file1 null -->
+	<update id="couponModify1">
+		update couponProduction set cptitle=#{couponVO.cptitle}, cpprice=#{couponVO.cpprice}, cppricedc=#{couponVO.cppricedc} ,cptext=#{couponVO.cptext}, 
+		cfile1=(select cfile1 from (select cfile1 from couponProduction where np=#{couponVO.np}) as tmp),
+		cfile2=#{file2}
+		where np=#{couponVO.np}
+	</update>
+	
+	<!-- 할인/쿠폰상품 수정 완료2 file2 null -->
+	<update id="couponModify2">
+		update couponProduction set cptitle=#{couponVO.cptitle}, cpprice=#{couponVO.cpprice}, cppricedc=#{couponVO.cppricedc} ,cptext=#{couponVO.cptext},
+		cfile1=#{file1},
+		cfile2=(select cfile2 from (select cfile2 from couponProduction where np=#{couponVO.np}) as tmp)
+		where np=#{couponVO.np}
+	</update>
+	
+	<!-- 할인/쿠폰상품 수정 완료3 file1 != null and file2 != null -->
+	<update id="couponModify3">
+		update couponProduction set cptitle=#{couponVO.cptitle}, cpprice=#{couponVO.cpprice}, cppricedc=#{couponVO.cppricedc} ,cptext=#{couponVO.cptext},
+		cfile1=#{file1}, cfile2=#{file2}
+		where np=#{couponVO.np}
+	</update>
+	
+	<!-- 할인/쿠폰상품 수정 완료4 file1 == null and file2 == null -->
+	<update id="couponModify4">
+		update couponProduction set cptitle=#{couponVO.cptitle}, cpprice=#{couponVO.cpprice}, cppricedc=#{couponVO.cppricedc} ,cptext=#{couponVO.cptext},
+		cfile1=(select cfile1 from (select cfile1 from couponProduction where np=#{couponVO.np}) as tmp),
+		cfile2=(select cfile2 from (select cfile2 from couponProduction where np=#{couponVO.np}) as tmp)
+		where np=#{couponVO.np}
+	</update>
+	
+	<!-- 할인/쿠폰상품 삭제  -->
+	<delete id="couponDelete">
+	<![CDATA[
+		 delete from couponProduction where np=#{np}
+	]]>
+	</delete>
+	
+	
+	<!-- 이벤트 등록 -->
+	<insert id="eventWrite">
+	<![CDATA[
+		insert into eventProduction (eptitle, epdate_time, efile1, efile2, cname) values
+		(#{eventVO.eptitle}, sysdate(), #{file1}, #{file2}, #{eventVO.cname})
+	]]>
+	</insert>
+	
+	<!-- 이벤트 조회 -->
+	<select id="eventList" resultType="com.spes.model.EventVO">
+	<![CDATA[
+		select * from eventProduction order by np desc
+	]]>
+	</select>
+	
+	<!-- 이벤트 디테일 조회 -->
+	<select id="eventDetail" resultType="com.spes.model.EventVO">
+	<![CDATA[
+		select * from eventProduction where np=#{np}
+	]]>
+	</select>
+	
+	<!-- 이벤트 수정 완료1 file1 null -->
+	<update id="eventModify1">
+		update eventProduction set eptitle=#{eventVO.eptitle}, 
+		efile1=(select efile1 from (select efile1 from eventProduction where np=#{eventVO.np}) as tmp),
+		efile2=#{file2}
+		where np=#{eventVO.np}
+	</update>
+	
+	<!-- 이벤트 수정 완료2 file2 null -->
+	<update id="eventModify2">
+		update eventProduction set eptitle=#{eventVO.eptitle}, 
+		efile1=#{file1},
+		efile2=(select efile2 from (select efile2 from eventProduction where np=#{eventVO.np}) as tmp)
+		where np=#{eventVO.np}
+	</update>
+	
+	<!-- 이벤트 수정 완료3 file1 != null and file2 != null -->
+	<update id="eventModify3">
+		update eventProduction set eptitle=#{eventVO.eptitle}, 
+		efile1=#{file1}, efile2=#{file2}
+		where np=#{eventVO.np}
+	</update>
+	
+	<!-- 이벤트 수정 완료4 file1 == null and file2 == null -->
+	<update id="eventModify4">
+		update eventProduction set eptitle=#{eventVO.eptitle}, 
+		efile1=(select efile1 from (select efile1 from eventProduction where np=#{eventVO.np}) as tmp),
+		efile2=(select efile2 from (select efile2 from eventProduction where np=#{eventVO.np}) as tmp)
+		where np=#{eventVO.np}
+	</update>	
+	
+	<!-- 이벤트 삭제  -->
+	<delete id="eventDelete">
+	<![CDATA[
+		 delete from eventProduction where np=#{np}
+	]]>
+	</delete>
+	
+	
+</mapper>

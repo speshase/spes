@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+#middle1{
+	background-color:#efefef;
+	height:470px;
+	position:relative; z-index:1;
+	text-align:center;
+};
+
+#middle2{
+	width:54%;
+}
+
+#minimenu{
+	width:100%;
+	height:100px;
+	text-align:left;
+}
+
+.minimenu{
+	background-color:#ef0056;
+	border-radius:5px;
+	font-size:90%;
+}
+
+#formcenter{
+	width:100%;
+	padding: 5%;
+	margin-bottom:10%;
+	float:right;
+	border: 1px solid white;
+	background-color:white;
+}
+
+.table{
+	width:100%;
+	background-color:white;
+	border-radius:5px;
+	font-size:90%;
+	border: 1px solid white;
+}
+
+.tt{
+	color:#ef0056;
+	font-size:95%;
+}
+
+.tb{
+	color:gray;
+	font-size:80%;
+}
+
+#selectform{
+	width:54%;
+	text-align:left;
+	font-size:90%;
+}
+
+#dtd_select{
+	width:20%;
+    height:40px;
+	padding:1%;
+	margin-bottom:7px;
+	border:1px solid lightgray;
+	border-radius:5px;
+	text-align:left;
+}
+
+.input_off{
+	width:20%;
+    height:40px;
+	padding:1%;
+	margin-bottom:7px;
+	border:1px solid lightgray;
+	border-radius:5px;
+	text-align:left;
+}
+
+.select{
+	width:10%;
+    height:40px;
+	background-color:#ef0056;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.footer{
+	position:absolute;
+	bottom:1px;
+	width:100%;
+	height:2.5rem;
+}

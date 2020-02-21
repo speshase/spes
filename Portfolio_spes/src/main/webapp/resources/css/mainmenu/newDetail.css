@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+#middle1{
+	position:relative; z-index:1;
+	text-align:left;
+};
+
+#middle2{
+	
+};
+
+/* 테이블 시작 */
+
+#boardtable{
+	width:100%;
+	text-align:left;
+	font-size:90%;
+}
+
+.table{
+	width:100%;
+	background-color:white;
+	border-radius:5px;
+	font-size:90%;
+	text-align:left;
+}
+
+/* 글 수정 버튼 */
+
+.modify{
+	width:10%;
+    height:40px;
+	background-color:skyblue;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+	margin-bottom:3%;
+}
+
+.delete{
+	width:10%;
+    height:40px;
+	background-color:#9b37ff;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+	margin-bottom:3%;
+}
+
+/* 장바구니 담기 */
+
+.__count_range{
+	float:right;
+	width:30%;
+	
+}
+
+.countbtn{
+	width:5%;
+	height:30px;
+	background-color:skyblue;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.cartin{
+	width:50%;
+    height:40px;
+	background-color:#ef0056;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}

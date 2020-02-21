@@ -3,6 +3,7 @@
     
 <!-- jstl을 사용하기 위한 선언 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="../resources/js/logout.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../resources/js/logoutInclude.js"></script>
 
 </head>
 <body>
@@ -36,16 +38,18 @@
 					<c:choose>
 							<c:when test="${sessionScope.uid==null || log==false}">
 								<li><a href="http://localhost:8080/spes/main/agree">회원가입</a></li>
-								<li><a href="http://localhost:8080/spes/main/login">&nbsp로그인</a></li>
+								<li><a href="http://localhost:8080/spes/main/login">&nbsp;로그인</a></li>
 							</c:when>
 							<c:otherwise>
 								<li>${sessionScope.uid}님 어서오세요.</li>
-								<li><a href="http://localhost:8080/spes/main/agree">회원정보</a></li>
-								<li><a href="http://localhost:8080/spes/main/spes" id="logout">&nbsp로그아웃</a></li>
+								<li><a href="http://localhost:8080/spes/main/userModify">회원정보</a></li>
+								<li><a href="javascript:void(0);" id="logout">&nbsp;로그아웃</a></li>
+								<!-- <li><a href="javascript:void(0);" id="logout">&nbsp로그아웃</a></li>  -->
+								<!-- <li><a href="http://localhost:8080/spes" id="logout">&nbsp로그아웃</a></li> -->
 							</c:otherwise>
 						</c:choose>
-						<li><a href="http://localhost:8080/spes/customer/delivery">&nbsp배송조회</a></li>
-						<li><a href="http://localhost:8080/spes/customer/customerService">&nbsp고객센터</a></li>
+						<li><a href="http://localhost:8080/spes/mypage/cart">&nbsp;마이페이지</a></li>
+						<li><a href="http://localhost:8080/spes/customer/customerService">&nbsp;고객센터</a></li>
 
 					</ul>
 				</form>
@@ -54,36 +58,36 @@
 
 			<br> <br> <br>
 			<center>
-				<a href="http://localhost:8080/spes/main/spes"> <img src="../resources/img/Logo-01.png" width="20%"></a>
+				<a href="http://localhost:8080/spes"> <img src="../resources/img/Logo-01.png" width="20%"></a>
 			</center>
 			<br>
 			<div>
-				<form class="navbar-form pull-left">
+				<form action="../main/searchResult" method="get" enctype="multipart/form-data" class="navbar-form pull-left">
 					<br>
 					<center>
-						<input type="text" class="search-query" size="60px">
-						<button type="submit" class="btn">검색</button>
+						<input type="text" name="keyword" class="search-query" size="60px" placeholder="검색어를 입력하세요.">
+						<input type="submit" class="btn search" value="검색">
 					</center>
 				</form>
 			</div>
 
 			<div id="dropdown">
 				<ul class="nav justify-content-end">
-					<li class="nav-item"><a href="#"><img
+					<li class="nav-item"><a href="http://localhost:8080/spes/mainMenu/allmenu"><img
 							src="../resources/img/homeIcon/survey.png" width="25px">전체카테고리</a>
 						<div id="dropdownMenu">
 							<ul>
-								<li><a href="http://localhost:8080/spes/detailpage/vegefruit"><img
+								<li><a href=""><img
 										src="../resources/img/homeIcon/apple.png" width="15%">&nbsp과일/채소</a></li>
-								<li><a href="http://localhost:8080/spes/detailpage/meatmilk"><img
+								<li><a href=""><img
 										src="../resources/img/homeIcon/beef.png" width="15%">&nbsp정육/유제품</a></li>
-								<li><a href="http://localhost:8080/spes/detailpage/seafood"><img
+								<li><a href=""><img
 										src="../resources/img/homeIcon/fish.png" width="15%">&nbsp수산/건어물</a></li>
-								<li><a href="http://localhost:8080/spes/detailpage/mealkit"><img
+								<li><a href=""><img
 										src="../resources/img/homeIcon/lunch.png" width="15%">&nbsp밀키트/간편식</a></li>
-								<li><a href="http://localhost:8080/spes/detailpage/bakery"><img
+								<li><a href=""><img
 										src="../resources/img/homeIcon/bread.png" width="15%">&nbsp베이커리</a></li>
-								<li><a href="http://localhost:8080/spes/detailpage/dessert"><img
+								<li><a href=""><img
 										src="../resources/img/homeIcon/macaron.png" width="15%">&nbsp디저트/음료</a></li>
 							</ul>
 						</div>
@@ -96,6 +100,3 @@
 			<!-- dropdown 끝 -->
 		</div>
 		<!-- top 끝 -->
-
-</body>
-</html>

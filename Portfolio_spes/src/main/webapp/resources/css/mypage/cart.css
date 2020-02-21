@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+p{margin:0;}
+
+#middle1{
+	background-color:#efefef;
+	position:relative; z-index:1;
+	text-align:left;
+};
+
+#middle2{
+	width:54%;
+}
+
+#minimenu{
+	width:100%;
+	text-align:left;
+}
+
+.minimenu{
+	background-color:#ef0056;
+	border-radius:5px;
+	font-size:90%;
+}
+
+/* 카트 테이블 */
+
+.carttable{
+	width:100%;
+	font-size:90%;
+	border-spacing:10%;
+	background-color:white;
+	border-radius:5px;
+}
+
+.carttable th{
+	padding:2%;
+}
+
+/* 개수 조절 */
+
+.__count_range{
+	float:right;
+	width:100%;
+	
+}
+
+.countbtn{
+	width:9%;
+	height:30px;
+	background-color:skyblue;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+/* 금액(계산) 테이블 */
+
+#paytable{
+	background-color:white;
+	border-radius:5px;
+}
+
+.cc{
+	display:inline-block;
+	font-size:225%;
+	color:gray;
+}
+
+.box{
+	display:inline-block;
+	margin:3%;
+	border:2px solid lightgray;
+	width:170px;
+	height:170px;
+	text-align:center;
+}
+
+.box2{
+	display:inline-block;
+	margin:3%;
+	border:2px solid #ef0056;;
+	width:170px;
+	height:170px;
+	text-align:center;
+}
+
+.boxname2{
+	font-size:90%;
+	color:gray;
+}
+
+.pay{
+	width:20%;
+    height:40px;
+    margin:1%;
+	background-color:#ef0056;
+	color:white;
+	border: 1px solid lightgray;
+	border-radius:5px;
+	box-shadow:none;
+	float:left;
+}
+
+

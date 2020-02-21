@@ -3,7 +3,7 @@ package com.spes.model;
 public class Criteria {
 	//페이지번호
 	private int pageNum;
-	//한 페이지당 데이터 처리 개수(10개)
+	//한 페이지당 데이터 처리 개수(5개)
 	private int amount;
 	//키워드 검색기능
 	private String keyword;

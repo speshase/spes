@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+#middle1{
+	background-color:#efefef;
+	position:relative; z-index:1;
+	text-align:center;
+};
+
+.tt{
+	color:#ef0056;
+	font-size:150%;
+}
+
+.tb{
+	color:gray;
+	font-size:80%;
+}
+
+#minimenu{
+	width:54%;
+	text-align:left;
+}
+
+.minimenu{
+	background-color:#ef0056;
+	border-radius:5px;
+	font-size:90%;
+}
+
+/* 테이블 시작 */
+
+#boardtable{
+	width:54%;
+	text-align:left;
+	font-size:90%;
+}
+
+.table{
+	width:100%;
+	background-color:white;
+	border-radius:5px;
+	font-size:90%;
+	text-align:left;
+}
+
+
+.qcontent{
+	text-align:left;
+	font-size:90%;
+}
+
+.modify{
+	width:10%;
+    height:40px;
+	background-color:skyblue;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.delete{
+	width:10%;
+    height:40px;
+	background-color:#9b37ff;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+/* 댓글 테이블 시작 */
+
+#boardcomment{
+	width:54%;
+	text-align:left;
+	font-size:90%;
+}
+
+.commentsWrite{
+	width:10%;
+    height:40px;
+	background-color:#46af14;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+.commentsModify{
+	width:10%;
+    height:40px;
+	background-color:skyblue;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+

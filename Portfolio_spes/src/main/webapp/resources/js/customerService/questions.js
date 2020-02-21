@@ -28,7 +28,7 @@ function questionDelete(qno){
 		},
 		
 		error: function(xhr, status, error) {
-			alert("error : 삭제에 실패하였습니다.");
+			alert("삭제에 실패하였습니다. error : " + error);
 		}
 	});
 		
@@ -41,22 +41,26 @@ function questionDelete(qno){
 /* questionsList 제목 클릭시 내용 나타내기 */
 
 function questionShow(qno){
-	//alert(qno);
 	
-	//$(".content1").hide();
-	var contentclick = false;
+	var dis = document.getElementById("dis"+qno);
+	//alert(dis);
 	
-	$(".content").click(function() { // show메서드 실행
-		//alert(qno);
-		if(contentclick == false) {
+	//$(".content").click(function() { // show메서드 실행
+		if(dis.style.display == 'none') {
 			$(".contentt"+qno).show(); // slow는 속도(fast)
-			//alert(".content2"+qno);
-			//alert(qno);
-			contentclick = true;
+			dis.style.display = 'block';
 		}else {
 			$(".contentt"+qno).hide();
-			//alert(qno);
-			contentclick = false;
+			dis.style.display = 'none';
 		}
-	});
+	//});
 }
+
+/* questionsList 카테고리 선택시 해당내용 나타내기 */
+
+$(document).ready(function(){
+	$("select[name=qcategory]").change(function(){
+		$("#questionsListForm").attr("action","questionsList").submit();
+	});
+});
+

@@ -4,9 +4,7 @@
 <!-- jstl을 사용하기 위한 선언 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html>
-
+<!-- include 이후 -->
 <jsp:include page="../include/topjsp.jsp" flush="true"></jsp:include>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,17 +28,18 @@
 		<div id="minimenu">
 		<table class="minimenu">
 			<tr>
-				<td width="33%"><a href="http://localhost:8080/spes/customer/questionsList" style="color:white;">자주묻는 질문</a></td>
+				<td width="33%"><a href="http://localhost:8080/spes/customer/questionsList" style="color:white;">▶자주묻는 질문◀</a></td>
 				<td width="33%"><a href="http://localhost:8080/spes/customer/customerService" style="color:white;">고객의 소리</a></td>
-				<td width="33%"><a href="http://localhost:8080/spes/customer/travisNews" style="color:white;">트라비스 소식</a></td>
+				<td width="33%"><a href="http://localhost:8080/spes/customer/travisNewsList" style="color:white;">트라비스 소식</a></td>
 			</tr>
 		</table>
 		<br>
 		
-	<!-- 카테고리 -->
+	<!-- 카테고리 <div id="qcategorycss"> -->
 		<div id="qcategorycss">
-			<select name="qcategory" id="qcategory" onchange="qcatogory();">
-			<option >카테고리전체</option>
+		<form id="questionsListForm">
+			<select name="qcategory">
+			<option value="">카테고리선택</option>
 				<option value="pay">주문/결제</option>
 				<option value="cancel">취소/교환/반품</option>
 				<option value="delivery">배송문의</option>
@@ -48,6 +47,7 @@
 				<option value="memverinfo">회원정보문의</option>
 				<option value="serviceuse">서비스이용 및 기타</option>
 			</select>
+			</form>
 		</div>
 		<br><br>
 	</div> <!-- 미니메뉴 테이블 끝 -->
@@ -56,6 +56,7 @@
 	<div id="boardtable">
 	<form action="questionsWrite" id="questionsForm">
 		<table class="table" width="100%">
+		
 		<!-- 아이디가 관리자면 글수정과 글삭제가 보임 -->
 		<c:choose>
 			<c:when test="${sessionScope.uid=='admin'}">
@@ -72,8 +73,7 @@
 					<tr>
 					<td>${list.qcategoryk}</td>
 					<td>
-						<a class="content" onclick="questionShow(${list.qno})">${list.qsubject}&emsp;
-						</a>
+						<a class="content" onclick="questionShow(${list.qno})">${list.qsubject}&emsp;</a>
 					</td>
 					<td>
 					<!-- a태그에 번호값을 넣어서 href를 통해서 controller로 보냄 -->
@@ -87,7 +87,7 @@
 					<tr>
 					<td></td>
 					<td>
-						<div class="contentt${list.qno}" style ="display:none"><center><p class="qcontent">${list.qcontent}</p></center></div>
+						<div id="dis${list.qno}" class="contentt${list.qno}" style ="display:none"><center><p class="qcontent">${list.qcontent}</p></center></div>
 					</td>
 					<td></td>
 					</tr>
@@ -105,19 +105,33 @@
 					<c:forEach items="${qcatogoryList}" var="list">        
 					<tr>
 					<td>${list.qcategoryk}</td>
-					<td><a class="content">${list.qsubject}</a></td>
+					<td><a class="content" onclick="questionShow(${list.qno})">${list.qsubject}&emsp;</a></td>
 					</tr>
 					<tr>
 					<td></td>
 					<td>
-					<div class="content2"><center><p class="qcontent">${list.qcontent}</p></center></div>
+					<div id="dis${list.qno}" class="contentt${list.qno}" style ="display:none"><center><p class="qcontent">${list.qcontent}</p></center></div>
 					</td>
 					</tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 			<tr>
-			<td colspan="3"> 페이지 </td>
+			<td colspan="3">
+				<center>
+					<c:if test="${page.prev}">
+						<a href="questionsList?pageNum=${page.startPage-10}&amount=${page.cri.amount}">[이전]</a>
+					</c:if>
+                   		
+					<c:forEach var="num" begin="${page.startPage}" end="${page.endPage}">
+						<a href="questionsList?pageNum=${num}&amount=${page.cri.amount}">${num}&emsp;</a>
+					</c:forEach>
+	                   		
+					<c:if test="${page.next}">
+						<a href="questionsList?pageNum=${page.endPage+1}&amount=${page.cri.amount}">[다음]</a>
+					</c:if>
+				</center>
+			</td>
 			</tr>
 			
 			<!-- 아이디가 관리자면 글쓰기가 보임 -->
@@ -147,4 +161,5 @@
 <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
 		CopyRight &copy; 2020 speshase All Rights Reserved. </footer>
 
+</body>
 </html>

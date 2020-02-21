@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class DetailpageController {
 	
 	@Autowired
-	private static final Logger logger =
-			LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping(value="/vegefruit", method = RequestMethod.GET) // 과일/채소
 	public String vegefruit() throws Exception {

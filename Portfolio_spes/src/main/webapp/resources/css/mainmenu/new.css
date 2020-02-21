@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+#middle1{
+	position:relative; z-index:1;
+	text-align:left;
+};
+
+#boardtable{
+	width:54%;
+	text-align:left;
+	font-size:90%;
+}
+
+#tabletitle{
+	display: inline-block;
+	margin-left:2%;
+	margin-right:2%;
+	font-size:110%;
+	text-align:left;
+	color:#ef0056;
+}
+
+.write{
+	width:10%;
+    height:40px;
+	background-color:#ef0056;
+	color:white;
+	border: 1px none lightgray;
+	border-radius:5px;
+	box-shadow:none;
+}
+
+#forContents{
+	display:inline-block;
+	margin:1%;
+}
+
+#nptitle{
+	display:inline-block;
+	margin:2%;
+	font-size:95%;
+}
+
+#npprice{
+	display:inline-block;
+	margin:2%;
+	font-size:110%;
+	color:#ef0056;
+}

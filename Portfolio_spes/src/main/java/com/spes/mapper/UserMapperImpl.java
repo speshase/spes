@@ -2,6 +2,7 @@ package com.spes.mapper;
 
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -32,6 +33,7 @@ public class UserMapperImpl implements UserMapper{
 		int cnt = sql.selectOne(namespace+".idolcheck", uid);
 		System.out.println(cnt);
 		return cnt;
+		
 	}
 	
 	//로그인 체크
@@ -61,6 +63,56 @@ public class UserMapperImpl implements UserMapper{
 	public UserVO checkSessionLogin(String sessionId) {
 		// 유효시간이 남아있고(>now()) 전달받은 세션 id와 일치하는 사용자 정보를 꺼낸다.
 		return sql.selectOne("org.zerock.mapper.UserMapper.checkUserWithSessionKey", sessionId);
+	}
+	
+	//회원정보 수정 보기
+	public UserVO userModify(String userId) throws Exception{
+		UserVO user = sql.selectOne(namespace+".userModify", userId);
+		return user;
+	}
+
+	//회원정보 수정 완료
+	@Override
+	public void userModifyEnd(UserVO user) throws Exception {
+		sql.update(namespace+".userModifyEnd", user);
+	}
+
+	//아이디찾기
+	@Override
+	public String findid(UserVO user) throws Exception {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("uname", user.getUname());
+		paramMap.put("uemail", user.getUemail());
+		System.out.println(paramMap);
+		String findid = sql.selectOne(namespace+".findid", paramMap);
+		System.out.println(findid);
+		return findid;
+	}
+	
+	//비밀번호 찾기
+	@Override
+	public String findpw(UserVO user) throws Exception {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("uid", user.getUid());
+		paramMap.put("uemail", user.getUemail());
+		System.out.println(paramMap);
+		String findpw = sql.selectOne(namespace+".findpw", paramMap);
+		System.out.println(findpw);
+		return findpw;
+	}
+
+	//비밀번호 수정 완료
+	@Override
+	public void pwModify(UserVO user) throws Exception {
+		System.out.println("비밀번호 바꾸기 Mapper : " + user);
+		sql.update(namespace+".pwModify", user);
+	}
+
+	//회원탈퇴
+	@Override
+	public void userleave(UserVO user) throws Exception {
+		sql.delete(namespace+".userleave", user);
+		
 	}
 
 }

@@ -8,8 +8,8 @@
 	<!-- 회원가입 -->
 	<insert id="joinUser">
 	<![CDATA[
-		insert into users(uid, upw, uadress_num, uadress, uadress_detail, uemail, ujointime)
-		values (#{uid}, #{upw}, #{uadress_num}, #{uadress}, #{uadress_detail}, #{uemail}, sysdate())
+		insert into users(uid, upw, uname, uadress_num, uadress, uadress_detail, uemail, ujointime)
+		values (#{uid}, #{upw}, #{uname}, #{uadress_num}, #{uadress}, #{uadress_detail}, #{uemail}, sysdate())
 	]]>
 	</insert>
 	
@@ -38,5 +38,44 @@
 		select uid, upw from users where sessionKey = #{sessionId} and sessionLimit > now()
 	]]>
 	</select>
+	
+	<!-- 회원정보 수정 (조회)-->
+	<select id="userModify" resultType="com.spes.model.UserVO">
+	<![CDATA[
+		select * from users where uid=#{uid}
+	]]>
+	</select>
+	
+	<!-- 회원정보 수정 (완료)-->
+	<update id="userModifyEnd">
+	<![CDATA[
+		update users set upw=#{upw}, uname=#{uname}, uadress_num=#{uadress_num}, uadress=#{uadress},
+		uadress_detail=#{uadress_detail}, uemail=#{uemail} where uid=#{uid}
+	]]>
+	</update>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findid" resultType="String">
+	<![CDATA[
+		select uid from users where uname=#{uname} and uemail=#{uemail}
+	]]>
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findpw" resultType="String">
+	<![CDATA[
+		select upw from users where uid=#{uid} and uemail=#{uemail}
+	]]>
+	</select>
+	
+	<!-- 비밀번호 수정 -->
+	<update id="pwModify">
+		update users set upw=#{upw} where uid=#{uid}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="userleave">
+		delete from users where uid=#{uid}
+	</delete>
 
 </mapper>

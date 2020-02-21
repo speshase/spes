@@ -45,26 +45,30 @@
 	</bean>
 	<tx:annotation-driven/>
 		
-	<!-- Google Gmail설정
+	<!-- Google Gmail설정 -->
 	<bean id = "mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com"></property>
 		<property name="port" value="587"></property>
 		<property name="username" value="speshase@gmail.com"></property>
-		<property name="password" value="-"></property>
+		<property name="password" value="rabbit0116!"></property>
+		
+		<!-- email 요청시는 SMTP -->
 		<property name="javaMailProperties">
 			<props>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
+			<prop key="mail.transport.protocol">smtp</prop>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.debug">true</prop>
 			</props>
 		</property>
-	</bean> -->
+	</bean>
 	
 	<!-- Naver 메일 설정 -->
 	<!-- Daum Kakao 아이디 : speshase.naver@hanmail.net으로 해야함. -->
-	<bean id = "mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.daum.net"></property>
-		<property name="port" value="465"></property>
-		<property name="username" value="speshase.naver@hanmail.net"></property>
+	<bean id = "mailSender2" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.naver.com"></property>
+		<property name="port" value="587"></property>
+		<property name="username" value="speshase"></property>
 		<property name="password" value="-"></property>
 		<property name="javaMailProperties">
 			<props>

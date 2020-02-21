@@ -4,13 +4,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spes.mapper.CustomerMapper">
-
 	
-	<!-- 자주묻는 질문 + 조회 -->
-	<select id="questionsList" resultType="com.spes.model.CategoryVO">
-	<![CDATA[
-		select * from questionsList order by qno desc
+	<!-- 자주묻는 질문 + 조회(5개씩 페이징) -->
+	<select id="questionsListPaging" resultType="com.spes.model.CategoryVO">
+		select * from
+		(select @rownum:=@rownum+1 as rownum, qno, qcategoryk, qsubject, qcontent
+		from (select @rownum:=0) as rownum
+		, questionsList
+		<if test="qcategory != null">
+		where qcategory = #{qcategory}
+		</if>
+		order by qno desc
+		)questionsList
+		<![CDATA[
+		where rownum>(#{pageNum}-1)*#{amount}
+		and rownum<=#{pageNum}*#{amount}
 	]]>
+	</select>
+	
+	<!-- questionsList 테이블의 전체게시물 개수 : 페이징의 realEnd를 알기 위해서 -->
+	<select id="questionsCount" resultType="int">
+		select count(*) from questionsList
+		<if test="qcategory != null">
+		where qcategory = #{qcategory}
+		</if>
 	</select>
 	
 	<!-- 자주묻는 질문 + 글쓰기 -->
@@ -28,12 +45,156 @@
 	
 	<!-- 자주묻는 질문 + 글수정 완료 -->
 	<update id="questionsModifyEnd">
-		update questionsList set qsubject=#{qsubject}, qcontent=#{qcontent} where qno=#{qno}
+		update questionsList set qcategory=#{qcategory}, qcategoryk=#{qcategoryk},
+		qsubject=#{qsubject}, qcontent=#{qcontent} where qno=#{qno}
 	</update>
 	
 	<!-- 자주묻는 질문 + 글삭제 -->
 	<delete id="questionsDelete">
 		delete from questionsList where qno = #{qno}
 	</delete>
-
+	
+	
+	
+	<!-- 트라비스 소식 + 조회(5개씩 페이징) -->
+	<select id="travisNewsListPaging" resultType="com.spes.model.Category2VO">
+		select * from
+		(select @rownum:=@rownum+1 as rownum, nno, ncategoryk, nsubject, ncontent
+		from (select @rownum:=0) as rownum
+		, travisNews
+		<if test="ncategory != null">
+		where ncategory = #{ncategory}
+		</if>
+		order by nno desc
+		)travisNews
+		<![CDATA[
+		where rownum>(#{pageNum}-1)*#{amount}
+		and rownum<=#{pageNum}*#{amount}
+	]]>
+	</select>
+	
+	<!-- travisNewsList 테이블의 전체게시물 개수 : 페이징의 realEnd를 알기 위해서 -->
+	<select id="travisNewsCount" resultType="int">
+		select count(*) from travisNews
+		<if test="ncategory != null">
+		where ncategory = #{ncategory}
+		</if>
+	</select>
+	
+	<!-- 트라비스 소식 + 글쓰기 -->
+	<insert id="travisNewsWrite">
+	<![CDATA[
+		insert into travisNews (ncategory, ncategoryk, nsubject, ncontent)
+		values (#{ncategory}, #{ncategoryk}, #{nsubject}, #{ncontent})
+	]]>
+	</insert>
+	
+	<!-- 트라비스 소식 + 글수정 보기 -->
+	<select id="travisNewsModify" resultType="com.spes.model.Category2VO">
+		select * from travisNews where nno=#{nno}
+	</select>
+	
+	<!-- 트라비스 소식 + 글수정 완료 -->
+	<update id="travisNewsModifyEnd">
+		update travisNews set ncategory=#{ncategory}, ncategoryk=#{ncategoryk},
+		nsubject=#{nsubject}, ncontent=#{ncontent} where nno=#{nno}
+	</update>
+	
+	<!-- 트라비스 소식 + 글삭제 -->
+	<delete id="travisNewsDelete">
+		delete from travisNews where nno = #{nno}
+	</delete>
+	
+	
+	
+	<!-- 고객의 소리 + 조회(5개씩 페이징) -->
+	<select id="customerServiceListPaging" resultType="com.spes.model.Category3VO">
+		select * from
+		(select @rownum:=@rownum+1 as rownum, cno, csubject, cuid, cwrite_date
+		from (select @rownum:=0) as rownum
+		, customerService
+		<if test="cuid != 'admin'">
+		where cuid=#{cuid}
+		</if>
+		order by cno desc
+		)customerService
+		<![CDATA[
+		where rownum>(#{cri.pageNum}-1)*#{cri.amount}
+		and rownum<=#{cri.pageNum}*#{cri.amount}
+	]]>
+	</select>
+	
+	<!-- customerService 테이블의 전체게시물 개수 : 페이징의 realEnd를 알기 위해서 -->
+	<select id="customerCount" resultType="int">
+		select count(*) from customerService
+		<if test="cuid != 'admin'">
+		where cuid=#{cuid}
+		</if>
+	</select>
+	
+	<!-- 제목을 클릭했을 때 보이는 해당되는 게시물의 상세 내용 -->
+	<select id="customerServiceDetail" resultType="com.spes.model.Category3VO">
+	<![CDATA[
+		select * from customerService where cno=#{cno}
+	]]>
+	</select>
+	
+	<!-- 고객의 소리 + 글쓰기 -->
+	<insert id="customerServiceWriteEnd">
+	<![CDATA[
+		insert into customerService (csubject, ccontent, cuid, cwrite_date)
+		values (#{csubject}, #{ccontent}, #{cuid}, sysdate())
+	]]>
+	</insert>
+	
+	<!-- 고객의 소리 + 글수정 보기 -->
+	<select id="customerServiceModify" resultType="com.spes.model.Category3VO">
+		select * from customerService where cno=#{cno}
+	</select>
+	
+	<!-- 고객의 소리 + 글수정 완료 -->
+	<update id="customerServiceModifyEnd">
+		update customerService set csubject=#{csubject}, ccontent=#{ccontent} where cno=#{cno}
+	</update>
+	
+	<!-- 고객의 소리 + 글삭제 -->
+	<delete id="customerServiceDelete">
+		delete from customerService where cno = #{cno}
+	</delete>
+	
+	<!-- 댓글조회 -->
+	<!-- 고객의 소리 + 댓글조회 -->
+	<select id="customerServiceCommentsList" resultType="com.spes.model.CommentsVO">
+	select cmno, cno, comments, cmuid, cdate_time, cndate_time from
+	(select @rownum:=@rownum+1 as rownum, cmno, cno, comments, cmuid, cdate_time, cndate_time
+	from (select @rownum:=0) as rownum,
+	comments where cno=#{cno}
+	order by cmno desc
+	)comments
+	<![CDATA[
+		where rownum>(#{cri.pageNum}-1)*#{cri.amount}
+		and rownum<=#{cri.pageNum}*#{cri.amount}
+	]]>
+	</select>
+	
+	<!-- 고객의 소리 + 댓글등록 -->
+	<insert id="commentsWrite">
+	<![CDATA[
+		insert into comments (cno, comments, cmuid, cdate_time)
+		values (#{cno}, #{comments}, #{cmuid}, sysdate())
+	]]>
+	</insert>
+	
+	<!-- 고객의 소리 + 댓글수정 -->
+	<update id="commentsModify">
+	<![CDATA[
+		update comments set comments=#{comments}, cmuid=#{cmuid}, cndate_time=sysdate() where cmno=#{cmno}
+	]]>
+	</update>
+		
+	<!-- 고객의 소리 + 글삭제 -->
+	<delete id="commentsDelete">
+		delete from comments where cmno = #{cmno}
+	</delete>
+	
 </mapper>
