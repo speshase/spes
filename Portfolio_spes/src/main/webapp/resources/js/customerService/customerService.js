@@ -116,7 +116,7 @@ function commentsModify2(cmno){
 			"cndate_time":cndate_time
 		};
 
-	if(comments!=null){
+	if(comments==null){
 		alert("댓글을 입력하세요.");
 		return false;
 	}
