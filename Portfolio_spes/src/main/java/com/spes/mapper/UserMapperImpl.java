@@ -33,7 +33,6 @@ public class UserMapperImpl implements UserMapper{
 		int cnt = sql.selectOne(namespace+".idolcheck", uid);
 		System.out.println(cnt);
 		return cnt;
-		
 	}
 	
 	//로그인 체크
@@ -63,18 +62,6 @@ public class UserMapperImpl implements UserMapper{
 	public UserVO checkSessionLogin(String sessionId) {
 		// 유효시간이 남아있고(>now()) 전달받은 세션 id와 일치하는 사용자 정보를 꺼낸다.
 		return sql.selectOne("org.zerock.mapper.UserMapper.checkUserWithSessionKey", sessionId);
-	}
-	
-	//회원정보 수정 보기
-	public UserVO userModify(String userId) throws Exception{
-		UserVO user = sql.selectOne(namespace+".userModify", userId);
-		return user;
-	}
-
-	//회원정보 수정 완료
-	@Override
-	public void userModifyEnd(UserVO user) throws Exception {
-		sql.update(namespace+".userModifyEnd", user);
 	}
 
 	//아이디찾기
@@ -106,6 +93,18 @@ public class UserMapperImpl implements UserMapper{
 	public void pwModify(UserVO user) throws Exception {
 		System.out.println("비밀번호 바꾸기 Mapper : " + user);
 		sql.update(namespace+".pwModify", user);
+	}
+
+	//회원정보 수정 보기
+	public UserVO userModify(String userId) throws Exception{
+		UserVO user = sql.selectOne(namespace+".userModify", userId);
+		return user;
+	}
+
+	//회원정보 수정 완료
+	@Override
+	public void userModifyEnd(UserVO user) throws Exception {
+		sql.update(namespace+".userModifyEnd", user);
 	}
 
 	//회원탈퇴

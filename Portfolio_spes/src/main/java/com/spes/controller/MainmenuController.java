@@ -75,16 +75,20 @@ public class MainmenuController {
 		System.out.println("------------------ file1 : "+newVO.getFile2().getOriginalFilename());
 		System.out.println("------------------ file2 size : "+newVO.getFile2().getSize());
 
-		if(!newVO.getFile1().getOriginalFilename().equals("") && !newVO.getFile1().getOriginalFilename().equals(null)) {
-			file1 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath, newVO.getFile1().getOriginalFilename(), newVO.getFile1().getBytes(), ymdPath);
+		if(!newVO.getFile1().getOriginalFilename().equals("")
+				&& !newVO.getFile1().getOriginalFilename().equals(null)) {
+			file1 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath,
+					newVO.getFile1().getOriginalFilename(), newVO.getFile1().getBytes(), ymdPath);
 			file1 = file1.replace('\\', '/');
 			
 		} else {
 		 //fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 		}
 		
-		if(!newVO.getFile2().getOriginalFilename().equals("") && !newVO.getFile2().getOriginalFilename().equals(null)) {
-			file2 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath, newVO.getFile2().getOriginalFilename(), newVO.getFile2().getBytes(), ymdPath);
+		if(!newVO.getFile2().getOriginalFilename().equals("")
+				&& !newVO.getFile2().getOriginalFilename().equals(null)) {
+			file2 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath,
+					newVO.getFile2().getOriginalFilename(), newVO.getFile2().getBytes(), ymdPath);
 			file2 = file2.replace('\\', '/');
 
 		} else {
@@ -144,7 +148,8 @@ public class MainmenuController {
 		// file1이 null이고, file2가 null이 아니면(and)
 		if(file1.equals("") && !file2.equals("")){
 			System.out.println("sql file1 yes null, file2 not null");
-			file2 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath, newVO.getFile2().getOriginalFilename(), newVO.getFile2().getBytes(), ymdPath);
+			file2 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath,
+					newVO.getFile2().getOriginalFilename(), newVO.getFile2().getBytes(), ymdPath);
 			file2 = file2.replace('\\', '/');
 			newService.newModify1(newVO, file1, file2);
 		}
@@ -152,7 +157,8 @@ public class MainmenuController {
 		// file2가 null이면, file1이 null이 아니면 (and)
 		else if(!file1.equals("") && file2.equals("")){
 			System.out.println("sql file1 not null, file2 yes null");
-			file1 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath, newVO.getFile1().getOriginalFilename(), newVO.getFile1().getBytes(), ymdPath);
+			file1 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath,
+					newVO.getFile1().getOriginalFilename(), newVO.getFile1().getBytes(), ymdPath);
 			file1 = file1.replace('\\', '/');			
 			newService.newModify2(newVO, file1, file2);
 		}	
@@ -160,9 +166,11 @@ public class MainmenuController {
 		// file1과 file2가 null이 아니면(and),
 		else if(!file1.equals("") && !file2.equals("")) {
 			System.out.println("sql file1 not null, file2 not null");
-			file1 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath, newVO.getFile1().getOriginalFilename(), newVO.getFile1().getBytes(), ymdPath);
+			file1 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath,
+					newVO.getFile1().getOriginalFilename(), newVO.getFile1().getBytes(), ymdPath);
 			file1 = file1.replace('\\', '/');
-			file2 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath, newVO.getFile2().getOriginalFilename(), newVO.getFile2().getBytes(), ymdPath);
+			file2 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath,
+					newVO.getFile2().getOriginalFilename(), newVO.getFile2().getBytes(), ymdPath);
 			file2 = file2.replace('\\', '/');
 					
 			newService.newModify3(newVO, file1, file2);
@@ -174,18 +182,22 @@ public class MainmenuController {
 			newService.newModify4(newVO);
 		}
 		
-		if(!newVO.getFile1().getOriginalFilename().equals("") && !newVO.getFile1().getOriginalFilename().equals(null)) {
+		if(!newVO.getFile1().getOriginalFilename().equals("")
+				&& !newVO.getFile1().getOriginalFilename().equals(null)) {
 			System.out.println("aaaaaa");
-			file1 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath, newVO.getFile1().getOriginalFilename(), newVO.getFile1().getBytes(), ymdPath);
+			file1 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath,
+					newVO.getFile1().getOriginalFilename(), newVO.getFile1().getBytes(), ymdPath);
 			file1 = file1.replace('\\', '/');
 			
 		} else {
 			System.out.println("bbbbbb");
 		}
 		
-		if(!newVO.getFile2().getOriginalFilename().equals("") && !newVO.getFile2().getOriginalFilename().equals(null)) {
+		if(!newVO.getFile2().getOriginalFilename().equals("")
+				&& !newVO.getFile2().getOriginalFilename().equals(null)) {
 			System.out.println("cccccc");
-			file2 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath, newVO.getFile2().getOriginalFilename(), newVO.getFile2().getBytes(), ymdPath);
+			file2 = ymdPath+"\\"+UploadFileUtils.fileUpload(imgUploadPath,
+					newVO.getFile2().getOriginalFilename(), newVO.getFile2().getBytes(), ymdPath);
 			file2 = file2.replace('\\', '/');
 
 		} else {

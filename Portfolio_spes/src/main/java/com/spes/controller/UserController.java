@@ -39,11 +39,7 @@ public class UserController {
 	@RequestMapping(value="/join", method = RequestMethod.GET) //join에서 home.jsp로 이동
 	public void joinGET() throws Exception {
 	}
-	
-	@RequestMapping(value="/joinend", method = RequestMethod.GET) //join에서 home.jsp로 이동
-	public void joinendGET() throws Exception {
-	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public void joinPOST(@RequestBody UserVO user) throws Exception {
@@ -51,6 +47,10 @@ public class UserController {
 		System.out.println("user : "+user);
 		uservice.joinUser(user);
 		//회원가입 완료
+	}
+	
+	@RequestMapping(value="/joinend", method = RequestMethod.GET) //join에서 home.jsp로 이동
+	public void joinendGET() throws Exception {
 	}
 	
 	// id 중복체크
@@ -62,9 +62,11 @@ public class UserController {
 		System.out.println("cnt : "+cnt);
 		return cnt;
 	}
-
+	
+	// 로그인
 	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
-	public String loginPost(LoginVO log, Model model,HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+	public String loginPost(LoginVO log, Model model,HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
 		System.out.println("-*-*- UserController -*-*-");
 		System.out.println("controller log = "+log);
 		String returnURL = "";
@@ -115,29 +117,12 @@ public class UserController {
 		
 	/* 로그아웃 */
 	@RequestMapping(value="/logout")
-	public String logout(HttpSession session,HttpServletRequest request, HttpServletResponse response) {
+	public String logout(HttpSession session,HttpServletRequest request, 
+			HttpServletResponse response) {
 		session.invalidate(); // 세션 전체를 날려버림
 		System.out.println("로그아웃 성공");
 
 	return "redirect:/"; // 로그아웃 후 홈으로
-	}
-	
-	//회원정보 수정 보기
-	@RequestMapping(value="/userModify", method = RequestMethod.GET) //userModify.jsp로 이동
-	public void userModify(UserVO user, Model model, HttpSession session) throws Exception {
-		logger.info("userModify get......");
-		String userId=(String) session.getAttribute("uid");
-		model.addAttribute("user", uservice.userModify(userId));
-	}
-	
-	//회원정보 수정 완료
-	@RequestMapping(value="/userModify", method = RequestMethod.POST) //home.jsp로 이동
-	public String userModifyPOST(UserVO user, Model model) throws Exception {
-		logger.info("userModifyEnd POST......"+user);
-		uservice.userModifyEnd(user);
-		//model.addAttribute("msg", "회원정보가 수정되었습니다.");
-		model.addAttribute("msg", "회원정보가 수정되었습니다.");
-		return "redirect:/";
 	}
 	
 	//아이디 비밀번호 찾기 보기
@@ -187,6 +172,24 @@ public class UserController {
 	public void pwModifyPOST(@RequestBody UserVO user) throws Exception {
 		System.out.println("pwModify POST......"+user.getUid());
 		uservice.pwModify(user);
+	}
+	
+	//회원정보 수정 보기
+	@RequestMapping(value="/userModify", method = RequestMethod.GET) //userModify.jsp로 이동
+	public void userModify(UserVO user, Model model, HttpSession session) throws Exception {
+		logger.info("userModify get......");
+		String userId=(String) session.getAttribute("uid");
+		model.addAttribute("user", uservice.userModify(userId));
+	}
+		
+	//회원정보 수정 완료
+	@RequestMapping(value="/userModify", method = RequestMethod.POST) //home.jsp로 이동
+	public String userModifyPOST(UserVO user, Model model) throws Exception {
+		logger.info("userModifyEnd POST......"+user);
+		uservice.userModifyEnd(user);
+		//model.addAttribute("msg", "회원정보가 수정되었습니다.");
+		model.addAttribute("msg", "회원정보가 수정되었습니다.");
+		return "redirect:/";
 	}
 	
 	//회원탈퇴

@@ -26,7 +26,7 @@ public class HomeController {
 		return "main/home";
 	}*/
 	
-	@RequestMapping(value="/login", method = RequestMethod.GET) //홈(메인)에서 login.jsp로 이동
+	@RequestMapping(value="/login", method = RequestMethod.GET) //login.jsp로 이동
 	public String login(Model model) throws Exception {
 		logger.info("main/login.jsp");
 		return "main/login";

@@ -156,7 +156,7 @@ public class CustomerMapperImpl implements CustomerMapper{
 		sql.insert(namespace+".customerServiceWriteEnd", ca);
 	}
 	
-	//트라비스 소식 + 글수정 완료
+	//고객의 소리 + 글수정 완료
 	@Override
 	public void customerServiceModify(Category3VO ca) throws Exception {
 		sql.update(namespace+".customerServiceModifyEnd", ca);
@@ -174,7 +174,8 @@ public class CustomerMapperImpl implements CustomerMapper{
 	//고객의 소리 + 댓글관련
 	//댓글조회(5개씩 페이징)
 	@Override
-	public List<CommentsVO> customerServiceCommentsList(CommentsVO comm, Criteria cri) throws Exception {
+	public List<CommentsVO> customerServiceCommentsList(CommentsVO comm,
+			Criteria cri) throws Exception {
 		System.out.println("Mapper cri="+cri);
 		Map<String, Object> paramMap = new HashMap<String,Object>();
 		System.out.println("Mapper comm.getCno() : "+comm.getCno());

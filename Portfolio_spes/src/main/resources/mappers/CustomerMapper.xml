@@ -188,7 +188,8 @@
 	<!-- 고객의 소리 + 댓글수정 -->
 	<update id="commentsModify">
 	<![CDATA[
-		update comments set comments=#{comments}, cmuid=#{cmuid}, cndate_time=sysdate() where cmno=#{cmno}
+		update comments set comments=#{comments}, cmuid=#{cmuid},
+		cndate_time=sysdate() where cmno=#{cmno}
 	]]>
 	</update>
 		

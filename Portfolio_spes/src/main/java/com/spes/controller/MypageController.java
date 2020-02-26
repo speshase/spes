@@ -70,13 +70,13 @@ public class MypageController {
 			return cnt;
 		}
 		}
-		
 	}
 	
 	// 장바구니 수량 변경
 	@ResponseBody
 	@RequestMapping(value="/cartModify", method = RequestMethod.POST)
-	public void cartModify(@RequestParam int count, int cp, int cpprice, CartVO cart, HttpSession session) throws Exception {
+	public void cartModify(@RequestParam int count, int cp, int cpprice,
+			CartVO cart, HttpSession session) throws Exception {
 		logger.info("mypage/cartModify.jsp");
 		String uid=(String)session.getAttribute("uid");
 		cart.setUid(uid);
@@ -89,7 +89,8 @@ public class MypageController {
 	// 장바구니 물품 삭제
 	@ResponseBody
 	@RequestMapping(value="/cartDelete", method = RequestMethod.POST)
-	public void cartDelete(@RequestParam int cp,  CartVO cart, HttpSession session) throws Exception {
+	public void cartDelete(@RequestParam int cp, 
+			CartVO cart, HttpSession session) throws Exception {
 		logger.info("mypage/cartDelete.jsp");
 		String uid=(String)session.getAttribute("uid");
 		cart.setUid(uid);

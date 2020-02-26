@@ -146,7 +146,8 @@ public class CustomerServiceImpl implements CustomerService{
 	//°í°´ÀÇ ¼Ò¸® + ´ñ±Û°ü·Ã
 	//´ñ±ÛÁ¶È¸(5°³¾¿ ÆäÀÌÂ¡)
 	@Override
-	public List<CommentsVO> customerServiceCommentsList(CommentsVO comm, Criteria cri) throws Exception {
+	public List<CommentsVO> customerServiceCommentsList(CommentsVO comm, 
+			Criteria cri) throws Exception {
 		System.out.println("CommentsVO comm : "+ comm);
 		return cm.customerServiceCommentsList(comm, cri);
 	}

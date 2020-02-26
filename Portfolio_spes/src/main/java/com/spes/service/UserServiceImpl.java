@@ -47,16 +47,6 @@ public class UserServiceImpl implements UserService{
 		return um.checkSessionLogin(sessionId);
 	}
 	
-	//회원정보 수정 보기
-	public UserVO userModify(String userId) throws Exception {
-		return um.userModify(userId);
-	}
-	
-	//회원정보 수정 완료
-	public void userModifyEnd(UserVO user) throws Exception {
-		um.userModifyEnd(user);
-	}
-	
 	//아이디찾기
 	public String findid(UserVO user) throws Exception {
 		return um.findid(user);
@@ -74,6 +64,16 @@ public class UserServiceImpl implements UserService{
 		um.pwModify(user);
 	}
 
+	//회원정보 수정 보기
+	public UserVO userModify(String userId) throws Exception {
+		return um.userModify(userId);
+	}
+		
+	//회원정보 수정 완료
+	public void userModifyEnd(UserVO user) throws Exception {
+		um.userModifyEnd(user);
+	}
+	
 	//회원탈퇴
 	@Override
 	public void userleave(UserVO user) throws Exception {

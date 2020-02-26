@@ -31,7 +31,8 @@ public class CustomerController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@RequestMapping(value="/questionsList", method = RequestMethod.GET) //자주묻는 질문 + 글조회(페이징)
+	//자주묻는 질문 + 글조회(페이징)
+	@RequestMapping(value="/questionsList", method = RequestMethod.GET)
 	public void questionsListPaging(String qcategory, Criteria cri, Model model) throws Exception {
 		logger.info("customer/questionsListPaging.jsp");
 		
@@ -44,19 +45,22 @@ public class CustomerController {
 		model.addAttribute("page",pv);
 	}
 	
-	@RequestMapping(value="/questionsWrite", method = RequestMethod.GET) //자주묻는 질문 + 글쓰기
+	//자주묻는 질문 + 글쓰기
+	@RequestMapping(value="/questionsWrite", method = RequestMethod.GET)
 	public String questionsWrite() throws Exception {
 		logger.info("customer/questionsWrite.jsp");
 		return "customer/questionsWrite";
 	}
 	
-	@RequestMapping(value="/questionsWriteEnd", method = RequestMethod.GET) //자주묻는 질문 + 글쓰기(등록)
+	//자주묻는 질문 + 글쓰기(등록)
+	@RequestMapping(value="/questionsWriteEnd", method = RequestMethod.GET)
 	public String WriteEnd() throws Exception {
 		logger.info("customer/WriteEnd.jsp");
 		return "redirect:questionsList";
 	}
 	
-	@RequestMapping(value="/questionsWriteEnd", method = RequestMethod.POST) //자주묻는 질문 + 글쓰기(등록)
+	//자주묻는 질문 + 글쓰기(등록)
+	@RequestMapping(value="/questionsWriteEnd", method = RequestMethod.POST)
 	public String WriteEndPOST(CategoryVO qca, Model model) throws Exception {
 		System.out.println("--- 자주묻는 질문 + 글쓰기 ---");
 		logger.info("customer/WriteEndPost.jsp");
@@ -64,14 +68,16 @@ public class CustomerController {
 		return "redirect:questionsList";
 	}
 	
-	@RequestMapping(value="/questionsModify", method = RequestMethod.GET) //자주묻는 질문 + 글수정 보기
+	//자주묻는 질문 + 글수정 보기
+	@RequestMapping(value="/questionsModify", method = RequestMethod.GET)
 	public void questionsModify(CategoryVO qca, Model model) throws Exception {
 		logger.info("customer/questionsModify.jsp");
 		model.addAttribute("modify",cservice.questionsModify(qca.getQno()));
 		//return "customer/questionsModify";
 	}
 	
-	@RequestMapping(value="/questionsModifyEnd", method = RequestMethod.POST) //자주묻는 질문 + 글수정 완료
+	//자주묻는 질문 + 글수정 완료
+	@RequestMapping(value="/questionsModifyEnd", method = RequestMethod.POST)
 	public String questionsModifyEndPOST(CategoryVO qca, RedirectAttributes rttr) throws Exception {
 		System.out.println("--- 자주묻는 질문 + 글수정 ---");
 		logger.info("customer/questionsModifyPost.jsp");
@@ -80,8 +86,9 @@ public class CustomerController {
 		return "redirect:questionsList";
 	}
 	
+	//자주묻는 질문 + 글삭제
 	@ResponseBody
-	@RequestMapping(value="/questionsDelete", method = RequestMethod.GET) //자주묻는 질문 + 글삭제
+	@RequestMapping(value="/questionsDelete", method = RequestMethod.GET)
 	public void questionsDelete(CategoryVO qca, Model model) throws Exception {
 		System.out.println("--- 자주묻는 질문 + 글삭제 ---");
 		System.out.println(qca.getQno());
@@ -168,7 +175,8 @@ public class CustomerController {
 	
 	//고객의 소리 + Detail Page
 	@RequestMapping(value="/customerServiceDetail", method=RequestMethod.GET)
-	public void customerServiceDetail(Category3VO ca, CommentsVO comm, Criteria cri, Model model, HttpSession session) throws Exception {
+	public void customerServiceDetail(Category3VO ca, CommentsVO comm,
+			Criteria cri, Model model, HttpSession session) throws Exception {
 		logger.info("customerServiceDetail get......"+ca.getCno());
 		logger.info("customerServiceDetail get......"+comm.getCno());
 		logger.info("customerServiceDetail get......"+comm);

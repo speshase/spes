@@ -8,8 +8,10 @@
 	<!-- 회원가입 -->
 	<insert id="joinUser">
 	<![CDATA[
-		insert into users(uid, upw, uname, uadress_num, uadress, uadress_detail, uemail, ujointime)
-		values (#{uid}, #{upw}, #{uname}, #{uadress_num}, #{uadress}, #{uadress_detail}, #{uemail}, sysdate())
+		insert into users(uid, upw, uname, uadress_num, uadress,
+		uadress_detail, uemail, ujointime)
+		values (#{uid}, #{upw}, #{uname}, #{uadress_num}, #{uadress},
+		#{uadress_detail}, #{uemail}, sysdate())
 	]]>
 	</insert>
 	
@@ -29,7 +31,8 @@
 	
 	<!-- 로그인된 경우 해당 세션id와 유효시간을 사용자 테이블에 세팅. -->
 	<update id="sessionLogin">
-		update userTable set sessionKey = #{sessionId}, sessionLimit = #{next} where userId=#{userId}
+		update userTable set sessionKey = #{sessionId},
+		sessionLimit = #{next} where userId=#{userId}
 	</update>
 	
 	<!-- 유효기간이 남아 있으면서 해당 sessionId를 가지는 사용자 정보를 꺼내오는 부분-->
@@ -38,21 +41,6 @@
 		select uid, upw from users where sessionKey = #{sessionId} and sessionLimit > now()
 	]]>
 	</select>
-	
-	<!-- 회원정보 수정 (조회)-->
-	<select id="userModify" resultType="com.spes.model.UserVO">
-	<![CDATA[
-		select * from users where uid=#{uid}
-	]]>
-	</select>
-	
-	<!-- 회원정보 수정 (완료)-->
-	<update id="userModifyEnd">
-	<![CDATA[
-		update users set upw=#{upw}, uname=#{uname}, uadress_num=#{uadress_num}, uadress=#{uadress},
-		uadress_detail=#{uadress_detail}, uemail=#{uemail} where uid=#{uid}
-	]]>
-	</update>
 	
 	<!-- 아이디 찾기 -->
 	<select id="findid" resultType="String">
@@ -71,6 +59,21 @@
 	<!-- 비밀번호 수정 -->
 	<update id="pwModify">
 		update users set upw=#{upw} where uid=#{uid}
+	</update>
+	
+	<!-- 회원정보 수정 (조회)-->
+	<select id="userModify" resultType="com.spes.model.UserVO">
+	<![CDATA[
+		select * from users where uid=#{uid}
+	]]>
+	</select>
+	
+	<!-- 회원정보 수정 (완료)-->
+	<update id="userModifyEnd">
+	<![CDATA[
+		update users set upw=#{upw}, uname=#{uname}, uadress_num=#{uadress_num}, uadress=#{uadress},
+		uadress_detail=#{uadress_detail}, uemail=#{uemail} where uid=#{uid}
+	]]>
 	</update>
 	
 	<!-- 회원탈퇴 -->
