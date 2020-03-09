@@ -702,10 +702,15 @@ public class MainmenuController {
 	/* display */
 	
 	@RequestMapping("/display") @ResponseBody public ResponseEntity<byte[]> getFile(String sfile1, String bfile1, String cfile1, String efile1){
-		File file1 = new File("E:\\JAVA_GREEN\\upload\\portfolio_spes\\new\\"+sfile1);
+		/*File file1 = new File("E:\\JAVA_GREEN\\upload\\portfolio_spes\\new\\"+sfile1);
 		File file2 = new File("E:\\JAVA_GREEN\\upload\\portfolio_spes\\new\\"+bfile1);
 		File file3 = new File("E:\\JAVA_GREEN\\upload\\portfolio_spes\\new\\"+cfile1);
-		File file4 = new File("E:\\JAVA_GREEN\\upload\\portfolio_spes\\new\\"+efile1);
+		File file4 = new File("E:\\JAVA_GREEN\\upload\\portfolio_spes\\new\\"+efile1);*/
+		
+		File file1 = new File("D:\\JAVA\\upload\\portfolio_spes\\new\\"+sfile1);
+		File file2 = new File("D:\\JAVA\\upload\\portfolio_spes\\new\\"+bfile1);
+		File file3 = new File("D:\\JAVA\\upload\\portfolio_spes\\new\\"+cfile1);
+		File file4 = new File("D:\\JAVA\\upload\\portfolio_spes\\new\\"+efile1);
 		
 		System.out.println("sfile1!#!@#!@#!@#!@#!@#!@ : " + sfile1);
 		System.out.println("bfile1!#!@#!@#!@#!@#!@#!@ : " + bfile1);
