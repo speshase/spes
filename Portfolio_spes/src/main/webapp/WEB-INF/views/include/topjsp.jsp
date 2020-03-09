@@ -37,19 +37,19 @@
 					<ul id="topMenu">
 					<c:choose>
 							<c:when test="${sessionScope.uid==null || log==false}">
-								<li><a href="http://localhost:8080/spes/main/agree">회원가입</a></li>
-								<li><a href="http://localhost:8080/spes/main/login">&nbsp;로그인</a></li>
+								<li><a href="/spes/main/agree">회원가입</a></li>
+								<li><a href="/spes/main/login">&nbsp;로그인</a></li>
 							</c:when>
 							<c:otherwise>
 								<li>${sessionScope.uid}님 어서오세요.</li>
-								<li><a href="http://localhost:8080/spes/main/userModify">회원정보</a></li>
+								<li><a href="/spes/main/userModify">회원정보</a></li>
 								<li><a href="javascript:void(0);" id="logout">&nbsp;로그아웃</a></li>
 								<!-- <li><a href="javascript:void(0);" id="logout">&nbsp로그아웃</a></li>  -->
 								<!-- <li><a href="http://localhost:8080/spes" id="logout">&nbsp로그아웃</a></li> -->
 							</c:otherwise>
 						</c:choose>
-						<li><a href="http://localhost:8080/spes/mypage/cart">&nbsp;마이페이지</a></li>
-						<li><a href="http://localhost:8080/spes/customer/customerService">&nbsp;고객센터</a></li>
+						<li><a href="/spes/mypage/cart">&nbsp;마이페이지</a></li>
+						<li><a href="/spes/customer/customerService">&nbsp;고객센터</a></li>
 
 					</ul>
 				</form>
@@ -58,7 +58,7 @@
 
 			<br> <br> <br>
 			<center>
-				<a href="http://localhost:8080/spes"> <img src="../resources/img/Logo-01.png" width="20%"></a>
+				<a href="/spes"> <img src="../resources/img/Logo-01.png" width="20%"></a>
 			</center>
 			<br>
 			<div>
@@ -73,7 +73,7 @@
 
 			<div id="dropdown">
 				<ul class="nav justify-content-end">
-					<li class="nav-item"><a href="http://localhost:8080/spes/mainMenu/allmenu"><img
+					<li class="nav-item"><a href="/spes/mainMenu/allmenu"><img
 							src="../resources/img/homeIcon/survey.png" width="25px">전체카테고리</a>
 						<div id="dropdownMenu">
 							<ul>
@@ -91,10 +91,10 @@
 										src="../resources/img/homeIcon/macaron.png" width="15%">&nbsp디저트/음료</a></li>
 							</ul>
 						</div>
-					<li class="nav-item"><a href="http://localhost:8080/spes/mainMenu/new">신상품</a></li>
-					<li class="nav-item"><a href="http://localhost:8080/spes/mainMenu/best">인기상품</a></li>
-					<li class="nav-item"><a href="http://localhost:8080/spes/mainMenu/coupon">할인/쿠폰</a></li>
-					<li class="nav-item"><a href="http://localhost:8080/spes/mainMenu/event">이벤트</a></li>
+					<li class="nav-item"><a href="/spes/mainMenu/new">신상품</a></li>
+					<li class="nav-item"><a href="/spes/mainMenu/best">인기상품</a></li>
+					<li class="nav-item"><a href="/spes/mainMenu/coupon">할인/쿠폰</a></li>
+					<li class="nav-item"><a href="/spes/mainMenu/event">이벤트</a></li>
 				</ul>
 			</div>
 			<!-- dropdown 끝 -->

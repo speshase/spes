@@ -23,10 +23,10 @@
 		<div id="minimenu">
 		<table class="minimenu">
 			<tr>
-				<td width="25%"><a href="http://localhost:8080/spes/mypage/delivery" style="color:white;">배송조회</a></td>
-				<td width="25%"><a href="http://localhost:8080/spes/mypage/cart" style="color:white;">장바구니</a></td>
-				<td width="25%"><a href="http://localhost:8080/spes/mypage/review" style="color:white;">상품후기</a></td>
-				<td width="25%"><a href="http://localhost:8080/spes/mypage/coupon2" style="color:white;">▶쿠폰◀</a></td>
+				<td width="25%"><a href="/spes/mypage/delivery" style="color:white;">배송조회</a></td>
+				<td width="25%"><a href="/spes/mypage/cart" style="color:white;">장바구니</a></td>
+				<td width="25%"><a href="/spes/mypage/review" style="color:white;">상품후기</a></td>
+				<td width="25%"><a href="/spes/mypage/coupon2" style="color:white;">▶쿠폰◀</a></td>
 			</tr>
 		</table>
 		</div>

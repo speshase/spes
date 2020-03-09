@@ -27,9 +27,9 @@
 	<div id="minimenu">
 	<table class="minimenu">
 		<tr>
-			<td width="33%"><a href="http://localhost:8080/spes/customer/questionsList" style="color:white;">자주묻는 질문</a></td>
-			<td width="33%"><a href="http://localhost:8080/spes/customer/customerService" style="color:white;">▶고객의 소리◀</a></td>
-			<td width="33%"><a href="http://localhost:8080/spes/customer/travisNewsList" style="color:white;">트라비스 소식</a></td>
+			<td width="33%"><a href="/spes/customer/questionsList" style="color:white;">자주묻는 질문</a></td>
+			<td width="33%"><a href="/spes/customer/customerService" style="color:white;">▶고객의 소리◀</a></td>
+			<td width="33%"><a href="/spes/customer/travisNewsList" style="color:white;">트라비스 소식</a></td>
 		</tr>
 	</table>
 	<br>
